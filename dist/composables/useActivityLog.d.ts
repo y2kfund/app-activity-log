@@ -5,6 +5,7 @@ interface ActivityLogEntry {
     internal_account_id: string;
     symbol: string;
     created_at: string;
+    legal_entity?: string;
 }
 export declare function useActivityLog(userId: string | null, symbolRoot: string): {
     activities: import('vue').Ref<{
@@ -14,6 +15,7 @@ export declare function useActivityLog(userId: string | null, symbolRoot: string
         internal_account_id: string;
         symbol: string;
         created_at: string;
+        legal_entity?: string | undefined;
     }[], ActivityLogEntry[] | {
         id: number;
         time_of_data_insert: string;
@@ -21,6 +23,7 @@ export declare function useActivityLog(userId: string | null, symbolRoot: string
         internal_account_id: string;
         symbol: string;
         created_at: string;
+        legal_entity?: string | undefined;
     }[]>;
     loading: import('vue').Ref<boolean, boolean>;
     error: import('vue').Ref<string | null, string | null>;

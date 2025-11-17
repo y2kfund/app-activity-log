@@ -1,4 +1,4 @@
-import { ref as Le, defineComponent as Yr, onMounted as Qr, watch as Xr, createElementBlock as M, openBlock as F, unref as fe, createElementVNode as P, createTextVNode as Be, toDisplayString as ge, createStaticVNode as Zr, Fragment as vt, renderList as yt, normalizeClass as es } from "vue";
+import { ref as Le, defineComponent as Yr, onMounted as Qr, watch as Xr, createElementBlock as M, openBlock as F, unref as fe, createElementVNode as P, createTextVNode as Be, toDisplayString as ge, createStaticVNode as Zr, Fragment as yt, renderList as vt, normalizeClass as es } from "vue";
 function ts(s, e) {
   for (var t = 0; t < e.length; t++) {
     const r = e[t];
@@ -95,7 +95,7 @@ function Xt(s, e, t) {
 function Zt(s, e) {
   if (typeof Reflect == "object" && typeof Reflect.metadata == "function") return Reflect.metadata(s, e);
 }
-function y(s, e, t, r) {
+function b(s, e, t, r) {
   function n(i) {
     return i instanceof t ? i : new t(function(o) {
       o(i);
@@ -415,7 +415,7 @@ const ns = {
   __propKey: Qt,
   __setFunctionName: Xt,
   __metadata: Zt,
-  __awaiter: y,
+  __awaiter: b,
   __generator: er,
   __createBinding: Ne,
   __exportStar: tr,
@@ -447,7 +447,7 @@ const ns = {
   __asyncGenerator: ir,
   __asyncValues: ar,
   __await: ce,
-  __awaiter: y,
+  __awaiter: b,
   __classPrivateFieldGet: hr,
   __classPrivateFieldIn: fr,
   __classPrivateFieldSet: dr,
@@ -516,7 +516,7 @@ class ls {
    * @param options - Options for invoking the Function.
    */
   invoke(e) {
-    return y(this, arguments, void 0, function* (t, r = {}) {
+    return b(this, arguments, void 0, function* (t, r = {}) {
       var n;
       let i, o;
       try {
@@ -540,13 +540,13 @@ class ls {
           signal: p
         }).catch((A) => {
           throw new as(A);
-        }), b = w.headers.get("x-relay-error");
-        if (b && b === "true")
+        }), v = w.headers.get("x-relay-error");
+        if (v && v === "true")
           throw new wt(w);
         if (!w.ok)
           throw new bt(w);
-        let v = ((n = w.headers.get("Content-Type")) !== null && n !== void 0 ? n : "text/plain").split(";")[0].trim(), S;
-        return v === "application/json" ? S = yield w.json() : v === "application/octet-stream" || v === "application/pdf" ? S = yield w.blob() : v === "text/event-stream" ? S = w : v === "multipart/form-data" ? S = yield w.formData() : S = yield w.text(), { data: S, error: null, response: w };
+        let y = ((n = w.headers.get("Content-Type")) !== null && n !== void 0 ? n : "text/plain").split(";")[0].trim(), S;
+        return y === "application/json" ? S = yield w.json() : y === "application/octet-stream" || y === "application/pdf" ? S = yield w.blob() : y === "text/event-stream" ? S = w : y === "multipart/form-data" ? S = yield w.formData() : S = yield w.text(), { data: S, error: null, response: w };
       } catch (a) {
         return {
           data: null,
@@ -581,7 +581,7 @@ function cs(s) {
 var $ = {};
 const he = /* @__PURE__ */ cs(is);
 var Ee = {}, Se = {}, ke = {}, Oe = {}, Te = {}, Ae = {}, mt;
-function vr() {
+function yr() {
   if (mt) return Ae;
   mt = 1, Object.defineProperty(Ae, "__esModule", { value: !0 });
   class s extends Error {
@@ -592,10 +592,10 @@ function vr() {
   return Ae.default = s, Ae;
 }
 var Et;
-function yr() {
+function vr() {
   if (Et) return Te;
   Et = 1, Object.defineProperty(Te, "__esModule", { value: !0 });
-  const e = he.__importDefault(vr());
+  const e = he.__importDefault(yr());
   class t {
     constructor(n) {
       var i, o;
@@ -632,8 +632,8 @@ function yr() {
             const A = await l.text();
             A === "" || (this.headers.get("Accept") === "text/csv" || this.headers.get("Accept") && (!((c = this.headers.get("Accept")) === null || c === void 0) && c.includes("application/vnd.pgrst.plan+text")) ? g = A : g = JSON.parse(A));
           }
-          const v = (u = this.headers.get("Prefer")) === null || u === void 0 ? void 0 : u.match(/count=(exact|planned|estimated)/), S = (h = l.headers.get("content-range")) === null || h === void 0 ? void 0 : h.split("/");
-          v && S && S.length > 1 && (_ = parseInt(S[1])), this.isMaybeSingle && this.method === "GET" && Array.isArray(g) && (g.length > 1 ? (d = {
+          const y = (u = this.headers.get("Prefer")) === null || u === void 0 ? void 0 : u.match(/count=(exact|planned|estimated)/), S = (h = l.headers.get("content-range")) === null || h === void 0 ? void 0 : h.split("/");
+          y && S && S.length > 1 && (_ = parseInt(S[1])), this.isMaybeSingle && this.method === "GET" && Array.isArray(g) && (g.length > 1 ? (d = {
             // https://github.com/PostgREST/postgrest/blob/a867d79c42419af16c18c3fb019eba8df992626f/src/PostgREST/Error.hs#L553
             code: "PGRST116",
             details: `Results contain ${g.length} rows, application/vnd.pgrst.object+json requires 1 row`,
@@ -641,12 +641,12 @@ function yr() {
             message: "JSON object requested, multiple (or no) rows returned"
           }, g = null, _ = null, p = 406, w = "Not Acceptable") : g.length === 1 ? g = g[0] : g = null);
         } else {
-          const v = await l.text();
+          const y = await l.text();
           try {
-            d = JSON.parse(v), Array.isArray(d) && l.status === 404 && (g = [], d = null, p = 200, w = "OK");
+            d = JSON.parse(y), Array.isArray(d) && l.status === 404 && (g = [], d = null, p = 200, w = "OK");
           } catch {
-            l.status === 404 && v === "" ? (p = 204, w = "No Content") : d = {
-              message: v
+            l.status === 404 && y === "" ? (p = 204, w = "No Content") : d = {
+              message: y
             };
           }
           if (d && this.isMaybeSingle && (!((f = d == null ? void 0 : d.details) === null || f === void 0) && f.includes("0 rows")) && (d = null, p = 200, w = "OK"), d && this.shouldThrowOnError)
@@ -717,7 +717,7 @@ var St;
 function wr() {
   if (St) return Oe;
   St = 1, Object.defineProperty(Oe, "__esModule", { value: !0 });
-  const e = he.__importDefault(yr());
+  const e = he.__importDefault(vr());
   class t extends e.default {
     /**
      * Perform a SELECT on the query result.
@@ -1507,9 +1507,9 @@ const Tr = de.__importDefault(ut());
 var Ar = $.PostgrestFilterBuilder = Tr.default;
 const Rr = de.__importDefault(wr());
 var jr = $.PostgrestTransformBuilder = Rr.default;
-const Pr = de.__importDefault(yr());
+const Pr = de.__importDefault(vr());
 var Cr = $.PostgrestBuilder = Pr.default;
-const Ir = de.__importDefault(vr());
+const Ir = de.__importDefault(yr());
 mr = $.PostgrestError = Ir.default;
 var $r = $.default = {
   PostgrestClient: Er.default,
@@ -1614,7 +1614,7 @@ Suggested solution: ${e.workaround}`), new Error(t);
     }
   }
 }
-const gs = "2.81.1", ps = `realtime-js/${gs}`, xr = "1.0.0", _s = "2.0.0", At = xr, Xe = 1e4, vs = 1e3, ys = 100;
+const gs = "2.81.1", ps = `realtime-js/${gs}`, xr = "1.0.0", _s = "2.0.0", At = xr, Xe = 1e4, ys = 1e3, vs = 100;
 var Q;
 (function(s) {
   s[s.connecting = 0] = "connecting", s[s.open = 1] = "open", s[s.closing = 2] = "closing", s[s.closed = 3] = "closed";
@@ -2099,10 +2099,10 @@ var Pt;
 (function(s) {
   s.ALL = "*", s.INSERT = "INSERT", s.UPDATE = "UPDATE", s.DELETE = "DELETE";
 })(Pt || (Pt = {}));
-var ve;
+var ye;
 (function(s) {
   s.BROADCAST = "broadcast", s.PRESENCE = "presence", s.POSTGRES_CHANGES = "postgres_changes", s.SYSTEM = "system";
-})(ve || (ve = {}));
+})(ye || (ye = {}));
 var W;
 (function(s) {
   s.SUBSCRIBED = "SUBSCRIBED", s.TIMED_OUT = "TIMED_OUT", s.CLOSED = "CLOSED", s.CHANNEL_ERROR = "CHANNEL_ERROR";
@@ -2133,7 +2133,7 @@ class ht {
   subscribe(e, t = this.timeout) {
     var r, n, i;
     if (this.socket.isConnected() || this.socket.connect(), this.state == C.closed) {
-      const { config: { broadcast: o, presence: a, private: l } } = this.params, c = (n = (r = this.bindings.postgres_changes) === null || r === void 0 ? void 0 : r.map((d) => d.filter)) !== null && n !== void 0 ? n : [], u = !!this.bindings[ve.PRESENCE] && this.bindings[ve.PRESENCE].length > 0 || ((i = this.params.config.presence) === null || i === void 0 ? void 0 : i.enabled) === !0, h = {}, f = {
+      const { config: { broadcast: o, presence: a, private: l } } = this.params, c = (n = (r = this.bindings.postgres_changes) === null || r === void 0 ? void 0 : r.map((d) => d.filter)) !== null && n !== void 0 ? n : [], u = !!this.bindings[ye.PRESENCE] && this.bindings[ye.PRESENCE].length > 0 || ((i = this.params.config.presence) === null || i === void 0 ? void 0 : i.enabled) === !0, h = {}, f = {
         broadcast: o,
         presence: Object.assign(Object.assign({}, a), { enabled: u }),
         postgres_changes: c,
@@ -2146,10 +2146,10 @@ class ht {
           return;
         } else {
           const _ = this.bindings.postgres_changes, p = (g = _ == null ? void 0 : _.length) !== null && g !== void 0 ? g : 0, w = [];
-          for (let b = 0; b < p; b++) {
-            const v = _[b], { filter: { event: S, schema: A, table: k, filter: j } } = v, V = d && d[b];
+          for (let v = 0; v < p; v++) {
+            const y = _[v], { filter: { event: S, schema: A, table: k, filter: j } } = y, V = d && d[v];
             if (V && V.event === S && V.schema === A && V.table === k && V.filter === j)
-              w.push(Object.assign(Object.assign({}, v), { id: V.id }));
+              w.push(Object.assign(Object.assign({}, y), { id: V.id }));
             else {
               this.unsubscribe(), this.state = C.errored, e == null || e(W.CHANNEL_ERROR, new Error("mismatch between server and client bindings for postgres changes"));
               return;
@@ -2183,7 +2183,7 @@ class ht {
     }, e);
   }
   on(e, t, r) {
-    return this.state === C.joined && e === ve.PRESENCE && (this.socket.log("channel", `resubscribe to ${this.topic} due to change in presence callbacks on joined channel`), this.unsubscribe().then(() => this.subscribe())), this._on(e, t, r);
+    return this.state === C.joined && e === ye.PRESENCE && (this.socket.log("channel", `resubscribe to ${this.topic} due to change in presence callbacks on joined channel`), this.unsubscribe().then(() => this.subscribe())), this._on(e, t, r);
   }
   /**
    * Sends a broadcast message explicitly via REST API.
@@ -2326,7 +2326,7 @@ class ht {
   }
   /** @internal */
   _addToPushBuffer(e) {
-    if (e.startTimeout(), this.pushBuffer.push(e), this.pushBuffer.length > ys) {
+    if (e.startTimeout(), this.pushBuffer.push(e), this.pushBuffer.length > vs) {
       const t = this.pushBuffer.shift();
       t && (t.destroy(), this.socket.log("channel", `discarded push due to buffer overflow: ${t.event}`, t.payload));
     }
@@ -2363,28 +2363,28 @@ class ht {
       var g, _, p;
       return ((g = d.filter) === null || g === void 0 ? void 0 : g.event) === "*" || ((p = (_ = d.filter) === null || _ === void 0 ? void 0 : _.event) === null || p === void 0 ? void 0 : p.toLocaleLowerCase()) === o;
     }).map((d) => d.callback(f, r)) : (i = this.bindings[o]) === null || i === void 0 || i.filter((d) => {
-      var g, _, p, w, b, v;
+      var g, _, p, w, v, y;
       if (["broadcast", "presence", "postgres_changes"].includes(o))
         if ("id" in d) {
           const S = d.id, A = (g = d.filter) === null || g === void 0 ? void 0 : g.event;
           return S && ((_ = t.ids) === null || _ === void 0 ? void 0 : _.includes(S)) && (A === "*" || (A == null ? void 0 : A.toLocaleLowerCase()) === ((p = t.data) === null || p === void 0 ? void 0 : p.type.toLocaleLowerCase()));
         } else {
-          const S = (b = (w = d == null ? void 0 : d.filter) === null || w === void 0 ? void 0 : w.event) === null || b === void 0 ? void 0 : b.toLocaleLowerCase();
-          return S === "*" || S === ((v = t == null ? void 0 : t.event) === null || v === void 0 ? void 0 : v.toLocaleLowerCase());
+          const S = (v = (w = d == null ? void 0 : d.filter) === null || w === void 0 ? void 0 : w.event) === null || v === void 0 ? void 0 : v.toLocaleLowerCase();
+          return S === "*" || S === ((y = t == null ? void 0 : t.event) === null || y === void 0 ? void 0 : y.toLocaleLowerCase());
         }
       else
         return d.type.toLocaleLowerCase() === o;
     }).map((d) => {
       if (typeof f == "object" && "ids" in f) {
-        const g = f.data, { schema: _, table: p, commit_timestamp: w, type: b, errors: v } = g;
+        const g = f.data, { schema: _, table: p, commit_timestamp: w, type: v, errors: y } = g;
         f = Object.assign(Object.assign({}, {
           schema: _,
           table: p,
           commit_timestamp: w,
-          eventType: b,
+          eventType: v,
           new: {},
           old: {},
-          errors: v
+          errors: y
         }), this._getPayloadRecords(g));
       }
       d.callback(f, r);
@@ -2697,7 +2697,7 @@ Option 2: Install and provide the "ws" package:
       } catch (t) {
         this.log("error", "error in heartbeat callback", t);
       }
-      this._wasManualDisconnect = !1, (e = this.conn) === null || e === void 0 || e.close(vs, "heartbeat timeout"), setTimeout(() => {
+      this._wasManualDisconnect = !1, (e = this.conn) === null || e === void 0 || e.close(ys, "heartbeat timeout"), setTimeout(() => {
         var t;
         this.isConnected() || (t = this.reconnectTimer) === null || t === void 0 || t.scheduleTimeout();
       }, Re.HEARTBEAT_TIMEOUT_FALLBACK);
@@ -2994,7 +2994,7 @@ const ft = (s) => s ? (...e) => s(...e) : (...e) => fetch(...e), Cs = () => Resp
 }, Fe = (s) => {
   var e;
   return s.msg || s.message || s.error_description || (typeof s.error == "string" ? s.error : (e = s.error) === null || e === void 0 ? void 0 : e.message) || JSON.stringify(s);
-}, $s = (s, e, t) => y(void 0, void 0, void 0, function* () {
+}, $s = (s, e, t) => b(void 0, void 0, void 0, function* () {
   const r = yield Cs();
   s instanceof r && !(t != null && t.noResolveJson) ? s.json().then((n) => {
     const i = s.status || 500, o = (n == null ? void 0 : n.statusCode) || i + "";
@@ -3007,7 +3007,7 @@ const ft = (s) => s ? (...e) => s(...e) : (...e) => fetch(...e), Cs = () => Resp
   return s === "GET" || !r ? n : (Is(r) ? (n.headers = Object.assign({ "Content-Type": "application/json" }, e == null ? void 0 : e.headers), n.body = JSON.stringify(r)) : n.body = r, e != null && e.duplex && (n.duplex = e.duplex), Object.assign(Object.assign({}, n), t));
 };
 function me(s, e, t, r, n, i) {
-  return y(this, void 0, void 0, function* () {
+  return b(this, void 0, void 0, function* () {
     return new Promise((o, a) => {
       s(t, xs(e, r, n, i)).then((l) => {
         if (!l.ok)
@@ -3017,28 +3017,28 @@ function me(s, e, t, r, n, i) {
     });
   });
 }
-function ye(s, e, t, r) {
-  return y(this, void 0, void 0, function* () {
+function ve(s, e, t, r) {
+  return b(this, void 0, void 0, function* () {
     return me(s, "GET", e, t, r);
   });
 }
 function B(s, e, t, r, n) {
-  return y(this, void 0, void 0, function* () {
+  return b(this, void 0, void 0, function* () {
     return me(s, "POST", e, r, n, t);
   });
 }
 function st(s, e, t, r, n) {
-  return y(this, void 0, void 0, function* () {
+  return b(this, void 0, void 0, function* () {
     return me(s, "PUT", e, r, n, t);
   });
 }
 function Us(s, e, t, r) {
-  return y(this, void 0, void 0, function* () {
+  return b(this, void 0, void 0, function* () {
     return me(s, "HEAD", e, Object.assign(Object.assign({}, t), { noResolveJson: !0 }), r);
   });
 }
 function gt(s, e, t, r, n) {
-  return y(this, void 0, void 0, function* () {
+  return b(this, void 0, void 0, function* () {
     return me(s, "DELETE", e, r, n, t);
   });
 }
@@ -3050,7 +3050,7 @@ class Ns {
     return this.execute().then(e, t);
   }
   execute() {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return {
           data: (yield this.downloadFn()).body,
@@ -3087,7 +3087,7 @@ class Ds {
     return this.promise || (this.promise = this.execute()), this.promise;
   }
   execute() {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return {
           data: yield (yield this.downloadFn()).blob(),
@@ -3134,7 +3134,7 @@ class Bs {
    * @param fileBody The body of the file to be stored in the bucket.
    */
   uploadOrUpdate(e, t, r, n) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         let i;
         const o = Object.assign(Object.assign({}, Ct), n);
@@ -3162,7 +3162,7 @@ class Bs {
    * @param fileBody The body of the file to be stored in the bucket.
    */
   upload(e, t, r) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       return this.uploadOrUpdate("POST", e, t, r);
     });
   }
@@ -3173,7 +3173,7 @@ class Bs {
    * @param fileBody The body of the file to be stored in the bucket.
    */
   uploadToSignedUrl(e, t, r, n) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       const i = this._removeEmptyFolders(e), o = this._getFinalPath(i), a = new URL(this.url + `/object/upload/sign/${o}`);
       a.searchParams.set("token", t);
       try {
@@ -3202,7 +3202,7 @@ class Bs {
    * @param options.upsert If set to true, allows the file to be overwritten if it already exists.
    */
   createSignedUploadUrl(e, t) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         let r = this._getFinalPath(e);
         const n = Object.assign({}, this.headers);
@@ -3227,7 +3227,7 @@ class Bs {
    * @param fileBody The body of the file to be stored in the bucket.
    */
   update(e, t, r) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       return this.uploadOrUpdate("PUT", e, t, r);
     });
   }
@@ -3239,7 +3239,7 @@ class Bs {
    * @param options The destination options.
    */
   move(e, t, r) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield B(this.fetch, `${this.url}/object/move`, {
           bucketId: this.bucketId,
@@ -3264,7 +3264,7 @@ class Bs {
    * @param options The destination options.
    */
   copy(e, t, r) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: { path: (yield B(this.fetch, `${this.url}/object/copy`, {
           bucketId: this.bucketId,
@@ -3290,7 +3290,7 @@ class Bs {
    * @param options.transform Transform the asset before serving it to the client.
    */
   createSignedUrl(e, t, r) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         let n = this._getFinalPath(e), i = yield B(this.fetch, `${this.url}/object/sign/${n}`, Object.assign({ expiresIn: t }, r != null && r.transform ? { transform: r.transform } : {}), { headers: this.headers });
         const o = r != null && r.download ? `&download=${r.download === !0 ? "" : r.download}` : "";
@@ -3312,7 +3312,7 @@ class Bs {
    * @param options.download triggers the file as a download if set to true. Set this parameter as the name of the file if you want to trigger the download with a different filename.
    */
   createSignedUrls(e, t, r) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         const n = yield B(this.fetch, `${this.url}/object/sign/${this.bucketId}`, { expiresIn: t, paths: e }, { headers: this.headers }), i = r != null && r.download ? `&download=${r.download === !0 ? "" : r.download}` : "";
         return {
@@ -3335,7 +3335,7 @@ class Bs {
    * @param options.transform Transform the asset before serving it to the client.
    */
   download(e, t) {
-    const n = typeof (t == null ? void 0 : t.transform) < "u" ? "render/image/authenticated" : "object", i = this.transformOptsToQueryString((t == null ? void 0 : t.transform) || {}), o = i ? `?${i}` : "", a = this._getFinalPath(e), l = () => ye(this.fetch, `${this.url}/${n}/${a}${o}`, {
+    const n = typeof (t == null ? void 0 : t.transform) < "u" ? "render/image/authenticated" : "object", i = this.transformOptsToQueryString((t == null ? void 0 : t.transform) || {}), o = i ? `?${i}` : "", a = this._getFinalPath(e), l = () => ve(this.fetch, `${this.url}/${n}/${a}${o}`, {
       headers: this.headers,
       noResolveJson: !0
     });
@@ -3346,10 +3346,10 @@ class Bs {
    * @param path
    */
   info(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       const t = this._getFinalPath(e);
       try {
-        const r = yield ye(this.fetch, `${this.url}/object/info/${t}`, {
+        const r = yield ve(this.fetch, `${this.url}/object/info/${t}`, {
           headers: this.headers
         });
         return { data: rt(r), error: null };
@@ -3367,7 +3367,7 @@ class Bs {
    * @param path
    */
   exists(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       const t = this._getFinalPath(e);
       try {
         return yield Us(this.fetch, `${this.url}/object/${t}`, {
@@ -3409,7 +3409,7 @@ class Bs {
    * @param paths An array of files to delete, including the path and file name. For example [`'folder/image.png'`].
    */
   remove(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield gt(this.fetch, `${this.url}/object/${this.bucketId}`, { prefixes: e }, { headers: this.headers }), error: null };
       } catch (t) {
@@ -3486,7 +3486,7 @@ class Bs {
    * @param options Search options including limit (defaults to 100), offset, sortBy, and search
    */
   list(e, t, r) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         const n = Object.assign(Object.assign(Object.assign({}, Ls), t), { prefix: e || "" });
         return { data: yield B(this.fetch, `${this.url}/object/list/${this.bucketId}`, n, { headers: this.headers }, r), error: null };
@@ -3505,7 +3505,7 @@ class Bs {
    * @param parameters
    */
   listV2(e, t) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         const r = Object.assign({}, e);
         return { data: yield B(this.fetch, `${this.url}/object/list-v2/${this.bucketId}`, r, { headers: this.headers }, t), error: null };
@@ -3554,10 +3554,10 @@ class qs {
    * Retrieves the details of all Storage buckets within an existing project.
    */
   listBuckets(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         const t = this.listBucketOptionsToQueryString(e);
-        return { data: yield ye(this.fetch, `${this.url}/bucket${t}`, {
+        return { data: yield ve(this.fetch, `${this.url}/bucket${t}`, {
           headers: this.headers
         }), error: null };
       } catch (t) {
@@ -3575,9 +3575,9 @@ class qs {
    * @param id The unique identifier of the bucket you would like to retrieve.
    */
   getBucket(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
-        return { data: yield ye(this.fetch, `${this.url}/bucket/${e}`, { headers: this.headers }), error: null };
+        return { data: yield ve(this.fetch, `${this.url}/bucket/${e}`, { headers: this.headers }), error: null };
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
@@ -3603,7 +3603,7 @@ class qs {
    *   - default bucket type is `STANDARD`
    */
   createBucket(e) {
-    return y(this, arguments, void 0, function* (t, r = {
+    return b(this, arguments, void 0, function* (t, r = {
       public: !1
     }) {
       try {
@@ -3637,7 +3637,7 @@ class qs {
    * Each mime type specified can be a wildcard, e.g. image/*, or a specific mime type, e.g. image/png.
    */
   updateBucket(e, t) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield st(this.fetch, `${this.url}/bucket/${e}`, {
           id: e,
@@ -3661,7 +3661,7 @@ class qs {
    * @param id The unique identifier of the bucket you would like to empty.
    */
   emptyBucket(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield B(this.fetch, `${this.url}/bucket/${e}/empty`, {}, { headers: this.headers }), error: null };
       } catch (t) {
@@ -3680,7 +3680,7 @@ class qs {
    * @param id The unique identifier of the bucket you would like to delete.
    */
   deleteBucket(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield gt(this.fetch, `${this.url}/bucket/${e}`, {}, { headers: this.headers }), error: null };
       } catch (t) {
@@ -3734,7 +3734,7 @@ class Ms {
    * ```
    */
   createBucket(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield B(this.fetch, `${this.url}/bucket`, { name: e }, { headers: this.headers }), error: null };
       } catch (t) {
@@ -3774,12 +3774,12 @@ class Ms {
    * ```
    */
   listBuckets(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         const t = new URLSearchParams();
         (e == null ? void 0 : e.limit) !== void 0 && t.set("limit", e.limit.toString()), (e == null ? void 0 : e.offset) !== void 0 && t.set("offset", e.offset.toString()), e != null && e.sortColumn && t.set("sortColumn", e.sortColumn), e != null && e.sortOrder && t.set("sortOrder", e.sortOrder), e != null && e.search && t.set("search", e.search);
         const r = t.toString(), n = r ? `${this.url}/bucket?${r}` : `${this.url}/bucket`;
-        return { data: yield ye(this.fetch, n, { headers: this.headers }), error: null };
+        return { data: yield ve(this.fetch, n, { headers: this.headers }), error: null };
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
@@ -3808,7 +3808,7 @@ class Ms {
    * ```
    */
   deleteBucket(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield gt(this.fetch, `${this.url}/bucket/${e}`, {}, { headers: this.headers }), error: null };
       } catch (t) {
@@ -3860,7 +3860,7 @@ const _t = (s) => s ? (...e) => s(...e) : (...e) => fetch(...e), Ws = (s) => {
     return !1;
   const e = Object.getPrototypeOf(s);
   return (e === null || e === Object.prototype || Object.getPrototypeOf(e) === null) && !(Symbol.toStringTag in s) && !(Symbol.iterator in s);
-}, $t = (s) => s.msg || s.message || s.error_description || s.error || JSON.stringify(s), Vs = (s, e, t) => y(void 0, void 0, void 0, function* () {
+}, $t = (s) => s.msg || s.message || s.error_description || s.error || JSON.stringify(s), Vs = (s, e, t) => b(void 0, void 0, void 0, function* () {
   if (s && typeof s == "object" && "status" in s && "ok" in s && typeof s.status == "number" && !(t != null && t.noResolveJson)) {
     const n = s.status || 500, i = s;
     if (typeof i.json == "function")
@@ -3882,7 +3882,7 @@ const _t = (s) => s ? (...e) => s(...e) : (...e) => fetch(...e), Ws = (s) => {
   return r ? (Ws(r) ? (n.headers = Object.assign({ "Content-Type": "application/json" }, e == null ? void 0 : e.headers), n.body = JSON.stringify(r)) : n.body = r, Object.assign(Object.assign({}, n), t)) : n;
 };
 function Hs(s, e, t, r, n, i) {
-  return y(this, void 0, void 0, function* () {
+  return b(this, void 0, void 0, function* () {
     return new Promise((o, a) => {
       s(t, Ks(e, r, n, i)).then((l) => {
         if (!l.ok)
@@ -3896,7 +3896,7 @@ function Hs(s, e, t, r, n, i) {
   });
 }
 function U(s, e, t, r, n) {
-  return y(this, void 0, void 0, function* () {
+  return b(this, void 0, void 0, function* () {
     return Hs(s, "POST", e, r, n, t);
   });
 }
@@ -3953,7 +3953,7 @@ class zs {
    * ```
    */
   createIndex(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: (yield U(this.fetch, `${this.url}/CreateIndex`, e, {
           headers: this.headers
@@ -3989,7 +3989,7 @@ class zs {
    * ```
    */
   getIndex(e, t) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield U(this.fetch, `${this.url}/GetIndex`, { vectorBucketName: e, indexName: t }, { headers: this.headers }), error: null };
       } catch (r) {
@@ -4036,7 +4036,7 @@ class zs {
    * ```
    */
   listIndexes(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield U(this.fetch, `${this.url}/ListIndexes`, e, {
           headers: this.headers
@@ -4072,7 +4072,7 @@ class zs {
    * ```
    */
   deleteIndex(e, t) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: (yield U(this.fetch, `${this.url}/DeleteIndex`, { vectorBucketName: e, indexName: t }, { headers: this.headers })) || {}, error: null };
       } catch (r) {
@@ -4140,7 +4140,7 @@ class Js {
    * ```
    */
   putVectors(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         if (e.vectors.length < 1 || e.vectors.length > 500)
           throw new Error("Vector batch size must be between 1 and 500 items");
@@ -4188,7 +4188,7 @@ class Js {
    * ```
    */
   getVectors(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield U(this.fetch, `${this.url}/GetVectors`, e, {
           headers: this.headers
@@ -4254,7 +4254,7 @@ class Js {
    * ```
    */
   listVectors(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         if (e.segmentCount !== void 0) {
           if (e.segmentCount < 1 || e.segmentCount > 16)
@@ -4317,7 +4317,7 @@ class Js {
    * ```
    */
   queryVectors(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield U(this.fetch, `${this.url}/QueryVectors`, e, {
           headers: this.headers
@@ -4358,7 +4358,7 @@ class Js {
    * ```
    */
   deleteVectors(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         if (e.keys.length < 1 || e.keys.length > 500)
           throw new Error("Keys batch size must be between 1 and 500 items");
@@ -4421,7 +4421,7 @@ class Gs {
    * ```
    */
   createBucket(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: (yield U(this.fetch, `${this.url}/CreateVectorBucket`, { vectorBucketName: e }, { headers: this.headers })) || {}, error: null };
       } catch (t) {
@@ -4453,7 +4453,7 @@ class Gs {
    * ```
    */
   getBucket(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: yield U(this.fetch, `${this.url}/GetVectorBucket`, { vectorBucketName: e }, { headers: this.headers }), error: null };
       } catch (t) {
@@ -4492,7 +4492,7 @@ class Gs {
    * ```
    */
   listBuckets() {
-    return y(this, arguments, void 0, function* (e = {}) {
+    return b(this, arguments, void 0, function* (e = {}) {
       try {
         return { data: yield U(this.fetch, `${this.url}/ListVectorBuckets`, e, {
           headers: this.headers
@@ -4528,7 +4528,7 @@ class Gs {
    * ```
    */
   deleteBucket(e) {
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       try {
         return { data: (yield U(this.fetch, `${this.url}/DeleteVectorBucket`, { vectorBucketName: e }, { headers: this.headers })) || {}, error: null };
       } catch (t) {
@@ -4601,7 +4601,7 @@ class Qs extends zs {
     const t = Object.create(null, {
       createIndex: { get: () => super.createIndex }
     });
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       return t.createIndex.call(this, Object.assign(Object.assign({}, e), { vectorBucketName: this.vectorBucketName }));
     });
   }
@@ -4622,7 +4622,7 @@ class Qs extends zs {
     const e = Object.create(null, {
       listIndexes: { get: () => super.listIndexes }
     });
-    return y(this, arguments, void 0, function* (t = {}) {
+    return b(this, arguments, void 0, function* (t = {}) {
       return e.listIndexes.call(this, Object.assign(Object.assign({}, t), { vectorBucketName: this.vectorBucketName }));
     });
   }
@@ -4644,7 +4644,7 @@ class Qs extends zs {
     const t = Object.create(null, {
       getIndex: { get: () => super.getIndex }
     });
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       return t.getIndex.call(this, this.vectorBucketName, e);
     });
   }
@@ -4665,7 +4665,7 @@ class Qs extends zs {
     const t = Object.create(null, {
       deleteIndex: { get: () => super.deleteIndex }
     });
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       return t.deleteIndex.call(this, this.vectorBucketName, e);
     });
   }
@@ -4727,7 +4727,7 @@ class Xs extends Js {
     const t = Object.create(null, {
       putVectors: { get: () => super.putVectors }
     });
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       return t.putVectors.call(this, Object.assign(Object.assign({}, e), { vectorBucketName: this.vectorBucketName, indexName: this.indexName }));
     });
   }
@@ -4751,7 +4751,7 @@ class Xs extends Js {
     const t = Object.create(null, {
       getVectors: { get: () => super.getVectors }
     });
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       return t.getVectors.call(this, Object.assign(Object.assign({}, e), { vectorBucketName: this.vectorBucketName, indexName: this.indexName }));
     });
   }
@@ -4775,7 +4775,7 @@ class Xs extends Js {
     const e = Object.create(null, {
       listVectors: { get: () => super.listVectors }
     });
-    return y(this, arguments, void 0, function* (t = {}) {
+    return b(this, arguments, void 0, function* (t = {}) {
       return e.listVectors.call(this, Object.assign(Object.assign({}, t), { vectorBucketName: this.vectorBucketName, indexName: this.indexName }));
     });
   }
@@ -4802,7 +4802,7 @@ class Xs extends Js {
     const t = Object.create(null, {
       queryVectors: { get: () => super.queryVectors }
     });
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       return t.queryVectors.call(this, Object.assign(Object.assign({}, e), { vectorBucketName: this.vectorBucketName, indexName: this.indexName }));
     });
   }
@@ -4825,7 +4825,7 @@ class Xs extends Js {
     const t = Object.create(null, {
       deleteVectors: { get: () => super.deleteVectors }
     });
-    return y(this, void 0, void 0, function* () {
+    return b(this, void 0, void 0, function* () {
       return t.deleteVectors.call(this, Object.assign(Object.assign({}, e), { vectorBucketName: this.vectorBucketName, indexName: this.indexName }));
     });
   }
@@ -4929,7 +4929,7 @@ const Fr = "2.81.1", oe = 30 * 1e3, nt = 3, Ve = nt * oe, fn = "http://localhost
     timestamp: Date.parse("2024-01-01T00:00:00.0Z"),
     name: "2024-01-01"
   }
-}, _n = /^([a-z0-9_-]{4})*($|[a-z0-9_-]{3}$|[a-z0-9_-]{2}$)$/i, vn = 10 * 60 * 1e3;
+}, _n = /^([a-z0-9_-]{4})*($|[a-z0-9_-]{3}$|[a-z0-9_-]{2}$)$/i, yn = 10 * 60 * 1e3;
 class we extends Error {
   constructor(e, t, r) {
     super(e), this.__isAuthError = !0, this.name = "AuthError", this.status = t, this.code = r;
@@ -4938,7 +4938,7 @@ class we extends Error {
 function m(s) {
   return typeof s == "object" && s !== null && "__isAuthError" in s;
 }
-class yn extends we {
+class vn extends we {
   constructor(e, t, r) {
     super(e, t, r), this.name = "AuthApiError", this.status = t, this.code = r;
   }
@@ -5374,7 +5374,7 @@ async function qt(s) {
       throw new D();
   } else if (typeof t == "object" && t && typeof t.weak_password == "object" && t.weak_password && Array.isArray(t.weak_password.reasons) && t.weak_password.reasons.length && t.weak_password.reasons.reduce((i, o) => i && typeof o == "string", !0))
     throw new Ut(Y(t), s.status, t.weak_password.reasons);
-  throw new yn(Y(t), s.status || 500, r);
+  throw new vn(Y(t), s.status || 500, r);
 }
 const Vn = (s, e, t, r) => {
   const n = { method: s, headers: (e == null ? void 0 : e.headers) || {} };
@@ -5909,15 +5909,15 @@ Issued At: ${i.toISOString()}`;
 Expiration Time: ${n.toISOString()}`), a && (w += `
 Not Before: ${a.toISOString()}`), l && (w += `
 Request ID: ${l}`), c) {
-    let b = `
+    let v = `
 Resources:`;
-    for (const v of c) {
-      if (!v || typeof v != "string")
-        throw new Error(`@supabase/auth-js: Invalid SIWE message field "resources". Every resource must be a valid string. Provided value: ${v}`);
-      b += `
-- ${v}`;
+    for (const y of c) {
+      if (!y || typeof y != "string")
+        throw new Error(`@supabase/auth-js: Invalid SIWE message field "resources". Every resource must be a valid string. Provided value: ${y}`);
+      v += `
+- ${y}`;
     }
-    w += b;
+    w += v;
   }
   return `${p}
 ${w}`;
@@ -6508,7 +6508,7 @@ class _i {
   }
 }
 Xn();
-const vi = {
+const yi = {
   url: fn,
   storageKey: gn,
   autoRefreshToken: !0,
@@ -6548,7 +6548,7 @@ class be {
   constructor(e) {
     var t, r, n;
     this.userStorage = null, this.memoryStorage = null, this.stateChangeEmitters = /* @__PURE__ */ new Map(), this.autoRefreshTicker = null, this.visibilityChangedCallback = null, this.refreshingDeferred = null, this.initializePromise = null, this.detectSessionInUrl = !0, this.hasCustomAuthorizationHeader = !1, this.suppressGetSessionWarning = !1, this.lockAcquired = !1, this.pendingInLock = [], this.broadcastChannel = null, this.logger = console.log;
-    const i = Object.assign(Object.assign({}, vi), e);
+    const i = Object.assign(Object.assign({}, yi), e);
     if (this.storageKey = i.storageKey, this.instanceID = (t = be.nextInstanceID[this.storageKey]) !== null && t !== void 0 ? t : 0, be.nextInstanceID[this.storageKey] = this.instanceID + 1, this.logDebugMessages = !!i.debug, typeof i.debug == "function" && (this.logger = i.debug), this.instanceID > 0 && I()) {
       const o = `${this._logPrefix()} Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.`;
       console.warn(o), this.logDebugMessages && console.trace(o);
@@ -6823,24 +6823,24 @@ class be {
     if ("message" in e)
       d = e.message, g = e.signature;
     else {
-      const { chain: _, wallet: p, statement: w, options: b } = e;
-      let v;
+      const { chain: _, wallet: p, statement: w, options: v } = e;
+      let y;
       if (I())
         if (typeof p == "object")
-          v = p;
+          y = p;
         else {
           const q = window;
           if ("ethereum" in q && typeof q.ethereum == "object" && "request" in q.ethereum && typeof q.ethereum.request == "function")
-            v = q.ethereum;
+            y = q.ethereum;
           else
             throw new Error("@supabase/auth-js: No compatible Ethereum wallet interface on the window object (window.ethereum) detected. Make sure the user already has a wallet installed and connected for this app. Prefer passing the wallet interface object directly to signInWithWeb3({ chain: 'ethereum', wallet: resolvedUserWallet }) instead.");
         }
       else {
-        if (typeof p != "object" || !(b != null && b.url))
+        if (typeof p != "object" || !(v != null && v.url))
           throw new Error("@supabase/auth-js: Both wallet and url must be specified in non-browser environments.");
-        v = p;
+        y = p;
       }
-      const S = new URL((t = b == null ? void 0 : b.url) !== null && t !== void 0 ? t : window.location.href), A = await v.request({
+      const S = new URL((t = v == null ? void 0 : v.url) !== null && t !== void 0 ? t : window.location.href), A = await y.request({
         method: "eth_requestAccounts"
       }).then((q) => q).catch(() => {
         throw new Error("@supabase/auth-js: Wallet method eth_requestAccounts is missing or invalid");
@@ -6848,9 +6848,9 @@ class be {
       if (!A || A.length === 0)
         throw new Error("@supabase/auth-js: No accounts available. Please ensure the wallet is connected.");
       const k = Jr(A[0]);
-      let j = (r = b == null ? void 0 : b.signInWithEthereum) === null || r === void 0 ? void 0 : r.chainId;
+      let j = (r = v == null ? void 0 : v.signInWithEthereum) === null || r === void 0 ? void 0 : r.chainId;
       if (!j) {
-        const q = await v.request({
+        const q = await y.request({
           method: "eth_chainId"
         });
         j = Zn(q);
@@ -6862,14 +6862,14 @@ class be {
         uri: S.href,
         version: "1",
         chainId: j,
-        nonce: (n = b == null ? void 0 : b.signInWithEthereum) === null || n === void 0 ? void 0 : n.nonce,
-        issuedAt: (o = (i = b == null ? void 0 : b.signInWithEthereum) === null || i === void 0 ? void 0 : i.issuedAt) !== null && o !== void 0 ? o : /* @__PURE__ */ new Date(),
-        expirationTime: (a = b == null ? void 0 : b.signInWithEthereum) === null || a === void 0 ? void 0 : a.expirationTime,
-        notBefore: (l = b == null ? void 0 : b.signInWithEthereum) === null || l === void 0 ? void 0 : l.notBefore,
-        requestId: (c = b == null ? void 0 : b.signInWithEthereum) === null || c === void 0 ? void 0 : c.requestId,
-        resources: (u = b == null ? void 0 : b.signInWithEthereum) === null || u === void 0 ? void 0 : u.resources
+        nonce: (n = v == null ? void 0 : v.signInWithEthereum) === null || n === void 0 ? void 0 : n.nonce,
+        issuedAt: (o = (i = v == null ? void 0 : v.signInWithEthereum) === null || i === void 0 ? void 0 : i.issuedAt) !== null && o !== void 0 ? o : /* @__PURE__ */ new Date(),
+        expirationTime: (a = v == null ? void 0 : v.signInWithEthereum) === null || a === void 0 ? void 0 : a.expirationTime,
+        notBefore: (l = v == null ? void 0 : v.signInWithEthereum) === null || l === void 0 ? void 0 : l.notBefore,
+        requestId: (c = v == null ? void 0 : v.signInWithEthereum) === null || c === void 0 ? void 0 : c.requestId,
+        resources: (u = v == null ? void 0 : v.signInWithEthereum) === null || u === void 0 ? void 0 : u.resources
       };
-      d = ti(V), g = await v.request({
+      d = ti(V), g = await y.request({
         method: "personal_sign",
         params: [ei(d), k]
       });
@@ -6903,7 +6903,7 @@ class be {
     if ("message" in e)
       g = e.message, _ = e.signature;
     else {
-      const { chain: p, wallet: w, statement: b, options: v } = e;
+      const { chain: p, wallet: w, statement: v, options: y } = e;
       let S;
       if (I())
         if (typeof w == "object")
@@ -6916,18 +6916,18 @@ class be {
             throw new Error("@supabase/auth-js: No compatible Solana wallet interface on the window object (window.solana) detected. Make sure the user already has a wallet installed and connected for this app. Prefer passing the wallet interface object directly to signInWithWeb3({ chain: 'solana', wallet: resolvedUserWallet }) instead.");
         }
       else {
-        if (typeof w != "object" || !(v != null && v.url))
+        if (typeof w != "object" || !(y != null && y.url))
           throw new Error("@supabase/auth-js: Both wallet and url must be specified in non-browser environments.");
         S = w;
       }
-      const A = new URL((t = v == null ? void 0 : v.url) !== null && t !== void 0 ? t : window.location.href);
+      const A = new URL((t = y == null ? void 0 : y.url) !== null && t !== void 0 ? t : window.location.href);
       if ("signIn" in S && S.signIn) {
-        const k = await S.signIn(Object.assign(Object.assign(Object.assign({ issuedAt: (/* @__PURE__ */ new Date()).toISOString() }, v == null ? void 0 : v.signInWithSolana), {
+        const k = await S.signIn(Object.assign(Object.assign(Object.assign({ issuedAt: (/* @__PURE__ */ new Date()).toISOString() }, y == null ? void 0 : y.signInWithSolana), {
           // non-overridable properties
           version: "1",
           domain: A.host,
           uri: A.href
-        }), b ? { statement: b } : null));
+        }), v ? { statement: v } : null));
         let j;
         if (Array.isArray(k) && k[0] && typeof k[0] == "object")
           j = k[0];
@@ -6945,18 +6945,18 @@ class be {
         g = [
           `${A.host} wants you to sign in with your Solana account:`,
           S.publicKey.toBase58(),
-          ...b ? ["", b, ""] : [""],
+          ...v ? ["", v, ""] : [""],
           "Version: 1",
           `URI: ${A.href}`,
-          `Issued At: ${(n = (r = v == null ? void 0 : v.signInWithSolana) === null || r === void 0 ? void 0 : r.issuedAt) !== null && n !== void 0 ? n : (/* @__PURE__ */ new Date()).toISOString()}`,
-          ...!((i = v == null ? void 0 : v.signInWithSolana) === null || i === void 0) && i.notBefore ? [`Not Before: ${v.signInWithSolana.notBefore}`] : [],
-          ...!((o = v == null ? void 0 : v.signInWithSolana) === null || o === void 0) && o.expirationTime ? [`Expiration Time: ${v.signInWithSolana.expirationTime}`] : [],
-          ...!((a = v == null ? void 0 : v.signInWithSolana) === null || a === void 0) && a.chainId ? [`Chain ID: ${v.signInWithSolana.chainId}`] : [],
-          ...!((l = v == null ? void 0 : v.signInWithSolana) === null || l === void 0) && l.nonce ? [`Nonce: ${v.signInWithSolana.nonce}`] : [],
-          ...!((c = v == null ? void 0 : v.signInWithSolana) === null || c === void 0) && c.requestId ? [`Request ID: ${v.signInWithSolana.requestId}`] : [],
-          ...!((h = (u = v == null ? void 0 : v.signInWithSolana) === null || u === void 0 ? void 0 : u.resources) === null || h === void 0) && h.length ? [
+          `Issued At: ${(n = (r = y == null ? void 0 : y.signInWithSolana) === null || r === void 0 ? void 0 : r.issuedAt) !== null && n !== void 0 ? n : (/* @__PURE__ */ new Date()).toISOString()}`,
+          ...!((i = y == null ? void 0 : y.signInWithSolana) === null || i === void 0) && i.notBefore ? [`Not Before: ${y.signInWithSolana.notBefore}`] : [],
+          ...!((o = y == null ? void 0 : y.signInWithSolana) === null || o === void 0) && o.expirationTime ? [`Expiration Time: ${y.signInWithSolana.expirationTime}`] : [],
+          ...!((a = y == null ? void 0 : y.signInWithSolana) === null || a === void 0) && a.chainId ? [`Chain ID: ${y.signInWithSolana.chainId}`] : [],
+          ...!((l = y == null ? void 0 : y.signInWithSolana) === null || l === void 0) && l.nonce ? [`Nonce: ${y.signInWithSolana.nonce}`] : [],
+          ...!((c = y == null ? void 0 : y.signInWithSolana) === null || c === void 0) && c.requestId ? [`Request ID: ${y.signInWithSolana.requestId}`] : [],
+          ...!((h = (u = y == null ? void 0 : y.signInWithSolana) === null || u === void 0 ? void 0 : u.resources) === null || h === void 0) && h.length ? [
             "Resources",
-            ...v.signInWithSolana.resources.map((j) => `- ${j}`)
+            ...y.signInWithSolana.resources.map((j) => `- ${j}`)
           ] : []
         ].join(`
 `);
@@ -6975,8 +6975,8 @@ class be {
       if (w)
         throw w;
       if (!p || !p.session || !p.user) {
-        const b = new te();
-        return this._returnResult({ data: { user: null, session: null }, error: b });
+        const v = new te();
+        return this._returnResult({ data: { user: null, session: null }, error: v });
       }
       return p.session && (await this._saveSession(p.session), await this._notifyAllSubscribers("SIGNED_IN", p.session)), this._returnResult({ data: Object.assign({}, p), error: w });
     } catch (p) {
@@ -7490,11 +7490,11 @@ class be {
       if (t === "pkce") {
         if (this._debug("#_initialize()", "begin", "is PKCE flow", !0), !e.code)
           throw new xt("No code detected.");
-        const { data: b, error: v } = await this._exchangeCodeForSession(e.code);
-        if (v)
-          throw v;
+        const { data: v, error: y } = await this._exchangeCodeForSession(e.code);
+        if (y)
+          throw y;
         const S = new URL(window.location.href);
-        return S.searchParams.delete("code"), window.history.replaceState(window.history.state, "", S.toString()), { data: { session: b.session, redirectType: null }, error: null };
+        return S.searchParams.delete("code"), window.history.replaceState(window.history.state, "", S.toString()), { data: { session: v.session, redirectType: null }, error: null };
       }
       const { provider_token: r, provider_refresh_token: n, access_token: i, refresh_token: o, expires_in: a, expires_at: l, token_type: c } = e;
       if (!i || !a || !o || !c)
@@ -8263,7 +8263,7 @@ class be {
     if (r)
       return r;
     const n = Date.now();
-    if (r = this.jwks.keys.find((a) => a.kid === e), r && this.jwks_cached_at + vn > n)
+    if (r = this.jwks.keys.find((a) => a.kid === e), r && this.jwks_cached_at + yn > n)
       return r;
     const { data: i, error: o } = await E(this.fetch, "GET", `${this.url}/.well-known/jwks.json`, {
       headers: this.headers
@@ -8334,8 +8334,8 @@ class be {
   }
 }
 be.nextInstanceID = {};
-const yi = be;
-class wi extends yi {
+const vi = be;
+class wi extends vi {
   constructor(e) {
     super(e);
   }
@@ -8533,10 +8533,33 @@ function Si(s, e) {
     fetchActivities: async () => {
       r.value = !0, n.value = null;
       try {
-        let a = i.schema("hf").from("position_table_changes_computed_in_supabase").select("*").order("created_at", { ascending: !1 });
+        let a = i.schema("hf").from("position_table_changes_computed_in_supabase").select("*").order("time_of_data_insert", { ascending: !1 }).order("created_at", { ascending: !1 });
         const { data: l, error: c } = await a;
         if (c) throw c;
-        t.value = l || [];
+        const [u, h] = await Promise.all([
+          i.schema("hf").from("user_accounts_master").select("internal_account_id, legal_entity"),
+          s ? i.schema("hf").from("user_account_alias").select("internal_account_id, alias").eq("user_id", s) : { data: [], error: null }
+        ]);
+        if (u.error)
+          throw console.error("❌ Accounts query error:", u.error), u.error;
+        const f = new Map(
+          (h.data || []).map((_) => [_.internal_account_id, _.alias])
+        ), d = new Map(
+          (u.data || []).map((_) => [_.internal_account_id, _.legal_entity])
+        ), g = l == null ? void 0 : l.reduce((_, p) => {
+          const w = `${p.time_of_data_insert}-${p.human_readable_description_of_changes}-${p.internal_account_id}`;
+          if (!_.find(
+            (v) => `${v.time_of_data_insert}-${v.human_readable_description_of_changes}-${v.internal_account_id}` === w
+          )) {
+            let v = d.get(p.internal_account_id) || void 0;
+            f.has(p.internal_account_id) && (v = f.get(p.internal_account_id)), _.push({
+              ...p,
+              legal_entity: v
+            });
+          }
+          return _;
+        }, []);
+        t.value = g || [];
       } catch (a) {
         n.value = a instanceof Error ? a.message : "Failed to fetch activities";
       } finally {
@@ -8575,8 +8598,8 @@ const ki = { class: "activity-log-container" }, Oi = {
     }
     function a(c) {
       if (!c) return [];
-      const u = String(c), h = u.match(/^([A-Z]+)\b/), f = (h == null ? void 0 : h[1]) ?? "", d = u.match(/\s([CP])\b/), g = (d == null ? void 0 : d[1]) ?? "", _ = u.match(/\s(\d+(?:\.\d+)?)\s+[CP]\b/), p = (_ == null ? void 0 : _[1]) ?? "", w = u.match(/\b(\d{6})[CP]/), b = w ? o(w[1]) : "";
-      return [f, b, p, g].filter(Boolean);
+      const u = String(c), h = u.match(/^([A-Z]+)\b/), f = (h == null ? void 0 : h[1]) ?? "", d = u.match(/\s([CP])\b/), g = (d == null ? void 0 : d[1]) ?? "", _ = u.match(/\s(\d+(?:\.\d+)?)\s+[CP]\b/), p = (_ == null ? void 0 : _[1]) ?? "", w = u.match(/\b(\d{6})[CP]/), v = w ? o(w[1]) : "";
+      return [f, v, p, g].filter(Boolean);
     }
     Xr(() => [e.userId, e.symbolRoot], () => {
       i();
@@ -8621,16 +8644,16 @@ const ki = { class: "activity-log-container" }, Oi = {
         ], -1)),
         Be(" " + ge(fe(n)), 1)
       ])) : fe(t).length === 0 ? (F(), M("div", Ai, [...u[2] || (u[2] = [
-        Zr('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-v-b1f5ad8a><rect x="3" y="4" width="18" height="18" rx="2" ry="2" data-v-b1f5ad8a></rect><line x1="16" y1="2" x2="16" y2="6" data-v-b1f5ad8a></line><line x1="8" y1="2" x2="8" y2="6" data-v-b1f5ad8a></line><line x1="3" y1="10" x2="21" y2="10" data-v-b1f5ad8a></line></svg><p data-v-b1f5ad8a>No activities found</p>', 2)
+        Zr('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-v-50e33a67><rect x="3" y="4" width="18" height="18" rx="2" ry="2" data-v-50e33a67></rect><line x1="16" y1="2" x2="16" y2="6" data-v-50e33a67></line><line x1="8" y1="2" x2="8" y2="6" data-v-50e33a67></line><line x1="3" y1="10" x2="21" y2="10" data-v-50e33a67></line></svg><p data-v-50e33a67>No activities found</p>', 2)
       ])])) : (F(), M("div", Ri, [
-        (F(!0), M(vt, null, yt(fe(t), (h) => (F(), M("div", {
+        (F(!0), M(yt, null, vt(fe(t), (h) => (F(), M("div", {
           key: h.id,
           class: "activity-item"
         }, [
           P("div", ji, [
             P("div", Pi, [
               P("div", Ci, [
-                (F(!0), M(vt, null, yt(a(h.symbol), (f, d) => (F(), M("span", {
+                (F(!0), M(yt, null, vt(a(h.symbol), (f, d) => (F(), M("span", {
                   key: d,
                   class: es(["tag", {
                     "tag-symbol": d === 0,
@@ -8679,7 +8702,7 @@ const ki = { class: "activity-log-container" }, Oi = {
                     r: "4"
                   })
                 ], -1)),
-                Be(" ID: " + ge(h.internal_account_id), 1)
+                Be(" ID: " + ge(h.legal_entity || h.internal_account_id), 1)
               ])
             ])
           ])
@@ -8692,7 +8715,7 @@ const ki = { class: "activity-log-container" }, Oi = {
   for (const [r, n] of e)
     t[r] = n;
   return t;
-}, Vi = /* @__PURE__ */ Di(Ni, [["__scopeId", "data-v-b1f5ad8a"]]);
+}, Vi = /* @__PURE__ */ Di(Ni, [["__scopeId", "data-v-50e33a67"]]);
 export {
   Vi as ActivityLog,
   Vi as default
