@@ -8,7 +8,7 @@ interface ActivityLogProps {
 }
 
 const props = withDefaults(defineProps<ActivityLogProps>(), {
-  userId: null,
+  userId: '4fbec15d-2316-4805-b2a4-5cd2115a5ac8',
   symbolRoot: ''
 })
 
@@ -34,49 +34,26 @@ const filteredActivities = computed(() => {
   }
   
   return activities.value.filter(activity => {
-    const legalEntity = activity.legal_entity || ''
-    const internalAccount = activity.internal_account_id || ''
-    const symbol = activity.symbol?.toLowerCase() || ''
-    const description = activity.human_readable_description_of_changes?.toLowerCase() || ''
+    const legalEntity = (activity.legal_entity || '').toLowerCase()
+    const internalAccount = (activity.internal_account_id || '').toLowerCase()
+    const symbol = (activity.symbol || '').toLowerCase()
+    const description = (activity.human_readable_description_of_changes || '').toLowerCase()
     
-    // Check if activity matches the search logic
-    // If there's only one term OR all terms look like symbols -> OR logic
-    // If there's a mix of symbol and ID -> AND logic
-    
-    const symbolTerms = searchTerms.filter(term => {
-      // A term is considered a symbol if it doesn't contain "client"
-      return !term.includes('client')
+    // Check if each term matches anywhere in the activity
+    // All terms must match (AND logic)
+    return searchTerms.every(term => {
+      // Check if term matches symbol
+      const symbolMatch = symbol.includes(term)
+      
+      // Check if term matches ID
+      const idMatch = legalEntity.includes(term) || internalAccount.includes(term)
+      
+      // Check if term matches description
+      const descriptionMatch = description.includes(term)
+      
+      // The term should match at least one field
+      return symbolMatch || idMatch || descriptionMatch
     })
-    
-    const idTerms = searchTerms.filter(term => {
-      return term.includes('client')
-    })
-    
-    // If only symbol terms (e.g., "META, IBIT") -> OR logic
-    if (symbolTerms.length > 0 && idTerms.length === 0) {
-      return symbolTerms.some(term => 
-        symbol.includes(term) || description.includes(term)
-      )
-    }
-    
-    // If only ID terms -> OR logic
-    if (idTerms.length > 0 && symbolTerms.length === 0) {
-      return idTerms.some(term => 
-        legalEntity.toLowerCase().includes(term) || 
-        internalAccount.toLowerCase().includes(term)
-      )
-    }
-    
-    // If both symbol and ID terms (e.g., "META, Client 2") -> AND logic
-    const symbolMatch = symbolTerms.some(term => 
-      symbol.includes(term) || description.includes(term)
-    )
-    const idMatch = idTerms.some(term => 
-      legalEntity.toLowerCase().includes(term) || 
-      internalAccount.toLowerCase().includes(term)
-    )
-    
-    return symbolMatch && idMatch
   })
 })
 
