@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, ref, computed } from 'vue'
 import { useActivityLog } from '../composables/useActivityLog'
 
 interface ActivityLogProps {
@@ -13,6 +13,72 @@ const props = withDefaults(defineProps<ActivityLogProps>(), {
 })
 
 const { activities, loading, error, fetchActivities } = useActivityLog(props.userId, props.symbolRoot)
+
+// Filter state
+const filterText = ref('')
+
+// Computed filtered activities
+const filteredActivities = computed(() => {
+  if (!filterText.value.trim()) {
+    return activities.value
+  }
+  
+  // Split by comma and trim each part
+  const searchTerms = filterText.value
+    .split(',')
+    .map(term => term.trim().toLowerCase())
+    .filter(term => term.length > 0)
+  
+  if (searchTerms.length === 0) {
+    return activities.value
+  }
+  
+  return activities.value.filter(activity => {
+    const legalEntity = activity.legal_entity || ''
+    const internalAccount = activity.internal_account_id || ''
+    const symbol = activity.symbol?.toLowerCase() || ''
+    const description = activity.human_readable_description_of_changes?.toLowerCase() || ''
+    
+    // Check if activity matches the search logic
+    // If there's only one term OR all terms look like symbols -> OR logic
+    // If there's a mix of symbol and ID -> AND logic
+    
+    const symbolTerms = searchTerms.filter(term => {
+      // A term is considered a symbol if it doesn't contain "client"
+      return !term.includes('client')
+    })
+    
+    const idTerms = searchTerms.filter(term => {
+      return term.includes('client')
+    })
+    
+    // If only symbol terms (e.g., "META, IBIT") -> OR logic
+    if (symbolTerms.length > 0 && idTerms.length === 0) {
+      return symbolTerms.some(term => 
+        symbol.includes(term) || description.includes(term)
+      )
+    }
+    
+    // If only ID terms -> OR logic
+    if (idTerms.length > 0 && symbolTerms.length === 0) {
+      return idTerms.some(term => 
+        legalEntity.toLowerCase().includes(term) || 
+        internalAccount.toLowerCase().includes(term)
+      )
+    }
+    
+    // If both symbol and ID terms (e.g., "META, Client 2") -> AND logic
+    const symbolMatch = symbolTerms.some(term => 
+      symbol.includes(term) || description.includes(term)
+    )
+    const idMatch = idTerms.some(term => 
+      legalEntity.toLowerCase().includes(term) || 
+      internalAccount.toLowerCase().includes(term)
+    )
+    
+    return symbolMatch && idMatch
+  })
+})
 
 onMounted(() => {
   fetchActivities()
@@ -99,12 +165,34 @@ const formatDate = (dateString: string) => {
 
 <template>
   <div class="activity-log-container">
-    <!--div class="header">
-      <h2>Activity Log</h2>
-      <div class="header-info">
-        <span v-if="!loading" class="count">{{ activities.length }} activities</span>
+    <div class="filter-section">
+      <div class="filter-input-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input 
+          v-model="filterText"
+          type="text" 
+          placeholder="Filter by symbol or ID..."
+          class="filter-input"
+        />
+        <button 
+          v-if="filterText"
+          @click="filterText = ''"
+          class="clear-button"
+          aria-label="Clear filter"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
-    </div-->
+      <span v-if="!loading" class="result-count">
+        {{ filteredActivities.length }} of {{ activities.length }} activities
+      </span>
+    </div>
     
     <div v-if="loading" class="loading">
       <div class="spinner"></div>
@@ -120,19 +208,19 @@ const formatDate = (dateString: string) => {
       {{ error }}
     </div>
 
-    <div v-else-if="activities.length === 0" class="empty">
+    <div v-else-if="filteredActivities.length === 0" class="empty">
       <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
         <line x1="16" y1="2" x2="16" y2="6"/>
         <line x1="8" y1="2" x2="8" y2="6"/>
         <line x1="3" y1="10" x2="21" y2="10"/>
       </svg>
-      <p>No activities found</p>
+      <p>{{ filterText ? 'No activities match your filter' : 'No activities found' }}</p>
     </div>
 
     <div v-else class="activity-list">
       <div 
-        v-for="activity in activities" 
+        v-for="activity in filteredActivities" 
         :key="activity.id"
         class="activity-item"
       >
@@ -203,4 +291,75 @@ const formatDate = (dateString: string) => {
 
 <style scoped>
 @import '../styles/scoped-styles.css';
+
+.filter-section {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  pointer-events: none;
+}
+
+.filter-input {
+  padding: 0.625rem 2.5rem 0.625rem 2.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  transition: all 0.2s;
+  background: white;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.filter-input::placeholder {
+  color: #94a3b8;
+}
+
+.clear-button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #64748b;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.clear-button:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.result-count {
+  font-size: 0.875rem;
+  color: #64748b;
+  white-space: nowrap;
+}
 </style>
