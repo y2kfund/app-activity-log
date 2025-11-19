@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, computed } from 'vue'
 import { useComments, type Comment } from '../composables/useComments'
+import { useUserInfo } from '../composables/useUserInfo'
 
 interface CommentsProps {
   activityId: string
@@ -15,10 +16,33 @@ const emit = defineEmits<{
 }>()
 
 const { comments, loading, error, fetchComments, addComment, updateComment, deleteComment } = useComments()
+const { getUserInfo } = useUserInfo()
 
 const newCommentText = ref('')
 const editingCommentId = ref<string | null>(null)
 const editingCommentText = ref('')
+const userDisplayNames = ref<Map<string, string>>(new Map())
+
+// Fetch user display names for all comments
+async function loadUserDisplayNames() {
+  const uniqueUserIds = [...new Set(comments.value.map(c => c.user_id))]
+  
+  for (const userId of uniqueUserIds) {
+    if (!userDisplayNames.value.has(userId)) {
+      const userInfo = await getUserInfo(userId)
+      userDisplayNames.value.set(userId, userInfo.name || userInfo.email || userId)
+    }
+  }
+}
+
+// Watch comments and load user info when they change
+watch(comments, () => {
+  loadUserDisplayNames()
+}, { deep: true })
+
+function getDisplayName(userId: string): string {
+  return userDisplayNames.value.get(userId) || userId
+}
 
 // Fetch comments immediately when component mounts and isOpen is true
 onMounted(() => {
@@ -143,7 +167,7 @@ const formatDate = (dateString: string) => {
             </div>
             <div v-else>
               <div class="comment-header">
-                <span class="comment-user">{{ comment.user_id }}</span>
+                <span class="comment-user">{{ getDisplayName(comment.user_id) }}</span>
                 <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
               </div>
               <p class="comment-text">{{ comment.comment }}</p>
