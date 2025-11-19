@@ -331,6 +331,7 @@
   color: #6b7280;
   transition: all 0.2s;
   position: relative;
+  width: auto;
 }
 
 .comment-icon-button:hover {

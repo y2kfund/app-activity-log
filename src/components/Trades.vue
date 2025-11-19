@@ -16,7 +16,8 @@ interface TradesProps {
   trades: Trades[]
   loading: boolean
   error: string | null
-  filterText: string
+  filterText: string 
+  userId: string
 }
 
 const props = defineProps<TradesProps>()
@@ -228,7 +229,7 @@ function clearFilter() {
       v-if="activeCommentActivityId"
       :activity-id="activeCommentActivityId"
       activity-type="trade"
-      :user-id="$attrs.userId as string || '4fbec15d-2316-4805-b2a4-5cd2115a5ac8'"
+      :user-id="props.userId"
       :is-open="!!activeCommentActivityId"
       @close="closeComments"
     />

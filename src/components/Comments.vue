@@ -185,7 +185,7 @@ const formatDate = (dateString: string) => {
 
 <style scoped>
 .comments-modal-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;

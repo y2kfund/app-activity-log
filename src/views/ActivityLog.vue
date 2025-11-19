@@ -13,7 +13,7 @@ interface ActivityLogProps {
 }
 
 const props = withDefaults(defineProps<ActivityLogProps>(), {
-  userId: '4fbec15d-2316-4805-b2a4-5cd2115a5ac8',
+  userId: null,
   symbolRoot: ''
 })
 
@@ -52,6 +52,7 @@ watch(() => [props.userId, props.symbolRoot, activeTab.value], () => {
       :loading="loading"
       :error="error"
       :filter-text="filterText"
+      :user-id="props.userId"
       @update:filter-text="filterText = $event"
     />
 
@@ -63,6 +64,7 @@ watch(() => [props.userId, props.symbolRoot, activeTab.value], () => {
       :loading="tradesLoading"
       :error="tradesError"
       :filter-text="filterText"
+      :user-id="props.userId"
       @update:filter-text="filterText = $event"
     />
   </div>

@@ -11,6 +11,7 @@ interface PositionsProps {
     loading: boolean;
     error: string | null;
     filterText: string;
+    userId: string;
 }
 declare const _default: import('vue').DefineComponent<PositionsProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "update:filterText": (value: string) => any;

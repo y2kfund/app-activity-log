@@ -1,4 +1,4 @@
-import { ref as U, defineComponent as Ie, createElementBlock as R, openBlock as O, createElementVNode as w, normalizeClass as Ee, watch as Oe, onMounted as ar, createCommentVNode as J, withModifiers as Xe, withDirectives as Pt, withKeys as It, vModelText as $t, unref as B, toDisplayString as x, Fragment as Ae, renderList as Re, computed as lr, createBlock as ke, createTextVNode as ge, createStaticVNode as bt, createVNode as ps } from "vue";
+import { ref as U, defineComponent as Ie, createElementBlock as R, openBlock as O, createElementVNode as w, normalizeClass as Ee, watch as Oe, onMounted as ar, createCommentVNode as J, withModifiers as Xe, withDirectives as Pt, withKeys as It, vModelText as xt, unref as B, toDisplayString as $, Fragment as Ae, renderList as Re, computed as lr, createBlock as ke, createTextVNode as ge, createStaticVNode as bt, createVNode as ps } from "vue";
 function vs(s, e) {
   for (var t = 0; t < e.length; t++) {
     const r = e[t];
@@ -399,7 +399,7 @@ function Ir(s) {
   }
   return n();
 }
-function $r(s, e) {
+function xr(s, e) {
   return typeof s == "string" && /^\.\.?\//.test(s) ? s.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function(t, r, n, i, o) {
     return r ? e ? ".jsx" : ".js" : n && (!i || !o) ? t : n + i + "." + o.toLowerCase() + "js";
   }) : s;
@@ -436,7 +436,7 @@ const ws = {
   __classPrivateFieldIn: jr,
   __addDisposableResource: Pr,
   __disposeResources: Ir,
-  __rewriteRelativeImportExtension: $r
+  __rewriteRelativeImportExtension: xr
 }, ms = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   __addDisposableResource: Pr,
@@ -466,7 +466,7 @@ const ws = {
   __propKey: gr,
   __read: Et,
   __rest: _e,
-  __rewriteRelativeImportExtension: $r,
+  __rewriteRelativeImportExtension: xr,
   __runInitializers: fr,
   __setFunctionName: pr,
   __spread: wr,
@@ -485,7 +485,7 @@ class Es extends kt {
     super("Failed to send a request to the Edge Function", "FunctionsFetchError", e);
   }
 }
-class xt extends kt {
+class $t extends kt {
   constructor(e) {
     super("Relay Error invoking the Edge Function", "FunctionsRelayError", e);
   }
@@ -542,7 +542,7 @@ class ks {
           throw new Es(T);
         }), m = _.headers.get("x-relay-error");
         if (m && m === "true")
-          throw new xt(_);
+          throw new $t(_);
         if (!_.ok)
           throw new Ut(_);
         let y = ((n = _.headers.get("Content-Type")) !== null && n !== void 0 ? n : "text/plain").split(";")[0].trim(), k;
@@ -551,7 +551,7 @@ class ks {
         return {
           data: null,
           error: a,
-          response: a instanceof Ut || a instanceof xt ? a.context : void 0
+          response: a instanceof Ut || a instanceof $t ? a.context : void 0
         };
       } finally {
         i && clearTimeout(i);
@@ -581,7 +581,7 @@ function Ss(s) {
 var M = {};
 const ye = /* @__PURE__ */ Ss(ms);
 var Ne = {}, De = {}, Le = {}, Be = {}, qe = {}, Me = {}, Nt;
-function xr() {
+function $r() {
   if (Nt) return Me;
   Nt = 1, Object.defineProperty(Me, "__esModule", { value: !0 });
   class s extends Error {
@@ -595,7 +595,7 @@ var Dt;
 function Ur() {
   if (Dt) return qe;
   Dt = 1, Object.defineProperty(qe, "__esModule", { value: !0 });
-  const e = ye.__importDefault(xr());
+  const e = ye.__importDefault($r());
   class t {
     constructor(n) {
       var i, o;
@@ -1509,7 +1509,7 @@ const Kr = we.__importDefault(Nr());
 var zr = M.PostgrestTransformBuilder = Kr.default;
 const Hr = we.__importDefault(Ur());
 var Jr = M.PostgrestBuilder = Hr.default;
-const Gr = we.__importDefault(xr());
+const Gr = we.__importDefault($r());
 Lr = M.PostgrestError = Gr.default;
 var Yr = M.default = {
   PostgrestClient: Br.default,
@@ -1614,7 +1614,7 @@ Suggested solution: ${e.workaround}`), new Error(t);
     }
   }
 }
-const Cs = "2.81.1", js = `realtime-js/${Cs}`, Qr = "1.0.0", Ps = "2.0.0", Ft = Qr, ht = 1e4, Is = 1e3, $s = 100;
+const Cs = "2.81.1", js = `realtime-js/${Cs}`, Qr = "1.0.0", Ps = "2.0.0", Ft = Qr, ht = 1e4, Is = 1e3, xs = 100;
 var re;
 (function(s) {
   s[s.connecting = 0] = "connecting", s[s.open = 1] = "open", s[s.closing = 2] = "closing", s[s.closed = 3] = "closed";
@@ -1635,7 +1635,7 @@ var se;
 (function(s) {
   s.Connecting = "connecting", s.Open = "open", s.Closing = "closing", s.Closed = "closed";
 })(se || (se = {}));
-class xs {
+class $s {
   constructor() {
     this.HEADER_LENGTH = 1, this.META_LENGTH = 4, this.USER_BROADCAST_PUSH_META_LENGTH = 5, this.KINDS = { push: 0, reply: 1, broadcast: 2, userBroadcastPush: 3, userBroadcast: 4 }, this.BINARY_ENCODING = 0, this.JSON_ENCODING = 1, this.BROADCAST = "broadcast";
   }
@@ -2326,7 +2326,7 @@ class Tt {
   }
   /** @internal */
   _addToPushBuffer(e) {
-    if (e.startTimeout(), this.pushBuffer.push(e), this.pushBuffer.length > $s) {
+    if (e.startTimeout(), this.pushBuffer.push(e), this.pushBuffer.length > xs) {
       const t = this.pushBuffer.shift();
       t && (t.destroy(), this.socket.log("channel", `discarded push due to buffer overflow: ${t.event}`, t.payload));
     }
@@ -2510,7 +2510,7 @@ class Vs {
    */
   constructor(e, t) {
     var r;
-    if (this.accessTokenValue = null, this.apiKey = null, this.channels = new Array(), this.endPoint = "", this.httpEndpoint = "", this.headers = {}, this.params = {}, this.timeout = ht, this.transport = null, this.heartbeatIntervalMs = Fe.HEARTBEAT_INTERVAL, this.heartbeatTimer = void 0, this.pendingHeartbeatRef = null, this.heartbeatCallback = et, this.ref = 0, this.reconnectTimer = null, this.vsn = Ft, this.logger = et, this.conn = null, this.sendBuffer = [], this.serializer = new xs(), this.stateChangeCallbacks = {
+    if (this.accessTokenValue = null, this.apiKey = null, this.channels = new Array(), this.endPoint = "", this.httpEndpoint = "", this.headers = {}, this.params = {}, this.timeout = ht, this.transport = null, this.heartbeatIntervalMs = Fe.HEARTBEAT_INTERVAL, this.heartbeatTimer = void 0, this.pendingHeartbeatRef = null, this.heartbeatCallback = et, this.ref = 0, this.reconnectTimer = null, this.vsn = Ft, this.logger = et, this.conn = null, this.sendBuffer = [], this.serializer = new $s(), this.stateChangeCallbacks = {
       open: [],
       close: [],
       error: [],
@@ -2955,7 +2955,7 @@ class Ot extends Error {
     super(e), this.__isStorageError = !0, this.name = "StorageError";
   }
 }
-function $(s) {
+function x(s) {
   return typeof s == "object" && s !== null && "__isStorageError" in s;
 }
 class Ks extends Ot {
@@ -3006,7 +3006,7 @@ const At = (s) => s ? (...e) => s(...e) : (...e) => fetch(...e), zs = () => Resp
   const n = { method: s, headers: (e == null ? void 0 : e.headers) || {} };
   return s === "GET" || !r ? n : (Hs(r) ? (n.headers = Object.assign({ "Content-Type": "application/json" }, e == null ? void 0 : e.headers), n.body = JSON.stringify(r)) : n.body = r, e != null && e.duplex && (n.duplex = e.duplex), Object.assign(Object.assign({}, n), t));
 };
-function $e(s, e, t, r, n, i) {
+function xe(s, e, t, r, n, i) {
   return b(this, void 0, void 0, function* () {
     return new Promise((o, a) => {
       s(t, Gs(e, r, n, i)).then((l) => {
@@ -3019,27 +3019,27 @@ function $e(s, e, t, r, n, i) {
 }
 function Ce(s, e, t, r) {
   return b(this, void 0, void 0, function* () {
-    return $e(s, "GET", e, t, r);
+    return xe(s, "GET", e, t, r);
   });
 }
 function H(s, e, t, r, n) {
   return b(this, void 0, void 0, function* () {
-    return $e(s, "POST", e, r, n, t);
+    return xe(s, "POST", e, r, n, t);
   });
 }
 function vt(s, e, t, r, n) {
   return b(this, void 0, void 0, function* () {
-    return $e(s, "PUT", e, r, n, t);
+    return xe(s, "PUT", e, r, n, t);
   });
 }
 function Ys(s, e, t, r) {
   return b(this, void 0, void 0, function* () {
-    return $e(s, "HEAD", e, Object.assign(Object.assign({}, t), { noResolveJson: !0 }), r);
+    return xe(s, "HEAD", e, Object.assign(Object.assign({}, t), { noResolveJson: !0 }), r);
   });
 }
 function Rt(s, e, t, r, n) {
   return b(this, void 0, void 0, function* () {
-    return $e(s, "DELETE", e, r, n, t);
+    return xe(s, "DELETE", e, r, n, t);
   });
 }
 class Qs {
@@ -3059,7 +3059,7 @@ class Qs {
       } catch (e) {
         if (this.shouldThrowOnError)
           throw e;
-        if ($(e))
+        if (x(e))
           return { data: null, error: e };
         throw e;
       }
@@ -3096,7 +3096,7 @@ class Xs {
       } catch (e) {
         if (this.shouldThrowOnError)
           throw e;
-        if ($(e))
+        if (x(e))
           return { data: null, error: e };
         throw e;
       }
@@ -3149,7 +3149,7 @@ class en {
       } catch (i) {
         if (this.shouldThrowOnError)
           throw i;
-        if ($(i))
+        if (x(i))
           return { data: null, error: i };
         throw i;
       }
@@ -3188,7 +3188,7 @@ class en {
       } catch (l) {
         if (this.shouldThrowOnError)
           throw l;
-        if ($(l))
+        if (x(l))
           return { data: null, error: l };
         throw l;
       }
@@ -3214,7 +3214,7 @@ class en {
       } catch (r) {
         if (this.shouldThrowOnError)
           throw r;
-        if ($(r))
+        if (x(r))
           return { data: null, error: r };
         throw r;
       }
@@ -3250,7 +3250,7 @@ class en {
       } catch (n) {
         if (this.shouldThrowOnError)
           throw n;
-        if ($(n))
+        if (x(n))
           return { data: null, error: n };
         throw n;
       }
@@ -3275,7 +3275,7 @@ class en {
       } catch (n) {
         if (this.shouldThrowOnError)
           throw n;
-        if ($(n))
+        if (x(n))
           return { data: null, error: n };
         throw n;
       }
@@ -3298,7 +3298,7 @@ class en {
       } catch (n) {
         if (this.shouldThrowOnError)
           throw n;
-        if ($(n))
+        if (x(n))
           return { data: null, error: n };
         throw n;
       }
@@ -3322,7 +3322,7 @@ class en {
       } catch (n) {
         if (this.shouldThrowOnError)
           throw n;
-        if ($(n))
+        if (x(n))
           return { data: null, error: n };
         throw n;
       }
@@ -3356,7 +3356,7 @@ class en {
       } catch (r) {
         if (this.shouldThrowOnError)
           throw r;
-        if ($(r))
+        if (x(r))
           return { data: null, error: r };
         throw r;
       }
@@ -3376,7 +3376,7 @@ class en {
       } catch (r) {
         if (this.shouldThrowOnError)
           throw r;
-        if ($(r) && r instanceof gt) {
+        if (x(r) && r instanceof gt) {
           const n = r.originalError;
           if ([400, 404].includes(n == null ? void 0 : n.status))
             return { data: !1, error: r };
@@ -3415,7 +3415,7 @@ class en {
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
-        if ($(t))
+        if (x(t))
           return { data: null, error: t };
         throw t;
       }
@@ -3493,7 +3493,7 @@ class en {
       } catch (n) {
         if (this.shouldThrowOnError)
           throw n;
-        if ($(n))
+        if (x(n))
           return { data: null, error: n };
         throw n;
       }
@@ -3512,7 +3512,7 @@ class en {
       } catch (r) {
         if (this.shouldThrowOnError)
           throw r;
-        if ($(r))
+        if (x(r))
           return { data: null, error: r };
         throw r;
       }
@@ -3563,7 +3563,7 @@ class tn {
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
-        if ($(t))
+        if (x(t))
           return { data: null, error: t };
         throw t;
       }
@@ -3581,7 +3581,7 @@ class tn {
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
-        if ($(t))
+        if (x(t))
           return { data: null, error: t };
         throw t;
       }
@@ -3618,7 +3618,7 @@ class tn {
       } catch (n) {
         if (this.shouldThrowOnError)
           throw n;
-        if ($(n))
+        if (x(n))
           return { data: null, error: n };
         throw n;
       }
@@ -3649,7 +3649,7 @@ class tn {
       } catch (r) {
         if (this.shouldThrowOnError)
           throw r;
-        if ($(r))
+        if (x(r))
           return { data: null, error: r };
         throw r;
       }
@@ -3667,7 +3667,7 @@ class tn {
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
-        if ($(t))
+        if (x(t))
           return { data: null, error: t };
         throw t;
       }
@@ -3686,7 +3686,7 @@ class tn {
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
-        if ($(t))
+        if (x(t))
           return { data: null, error: t };
         throw t;
       }
@@ -3740,7 +3740,7 @@ class rn {
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
-        if ($(t))
+        if (x(t))
           return { data: null, error: t };
         throw t;
       }
@@ -3783,7 +3783,7 @@ class rn {
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
-        if ($(t))
+        if (x(t))
           return { data: null, error: t };
         throw t;
       }
@@ -3814,7 +3814,7 @@ class rn {
       } catch (t) {
         if (this.shouldThrowOnError)
           throw t;
-        if ($(t))
+        if (x(t))
           return { data: null, error: t };
         throw t;
       }
@@ -4938,12 +4938,12 @@ class je extends Error {
 function E(s) {
   return typeof s == "object" && s !== null && "__isAuthError" in s;
 }
-class $n extends je {
+class xn extends je {
   constructor(e, t, r) {
     super(e, t, r), this.name = "AuthApiError", this.status = t, this.code = r;
   }
 }
-function xn(s) {
+function $n(s) {
   return E(s) && s.name === "AuthApiError";
 }
 class ne extends je {
@@ -5374,7 +5374,7 @@ async function tr(s) {
       throw new K();
   } else if (typeof t == "object" && t && typeof t.weak_password == "object" && t.weak_password && Array.isArray(t.weak_password.reasons) && t.weak_password.reasons.length && t.weak_password.reasons.reduce((i, o) => i && typeof o == "string", !0))
     throw new Yt(te(t), s.status, t.weak_password.reasons);
-  throw new $n(te(t), s.status || 500, r);
+  throw new xn(te(t), s.status || 500, r);
 }
 const ii = (s, e, t, r) => {
   const n = { method: s, headers: (e == null ? void 0 : e.headers) || {} };
@@ -7559,7 +7559,7 @@ class Pe {
       const o = (r = n.session) === null || r === void 0 ? void 0 : r.access_token;
       if (o) {
         const { error: a } = await this.admin.signOut(o, e);
-        if (a && !(xn(a) && (a.status === 404 || a.status === 401 || a.status === 403)))
+        if (a && !($n(a) && (a.status === 404 || a.status === 401 || a.status === 403)))
           return this._returnResult({ error: a });
       }
       return e !== "others" && (await this._removeSession(), await Y(this.storage, `${this.storageKey}-code-verifier`)), this._returnResult({ error: null });
@@ -8334,8 +8334,8 @@ class Pe {
   }
 }
 Pe.nextInstanceID = {};
-const $i = Pe;
-class xi extends $i {
+const xi = Pe;
+class $i extends xi {
   constructor(e) {
     super(e);
   }
@@ -8479,7 +8479,7 @@ class Ui {
       Authorization: `Bearer ${this.supabaseKey}`,
       apikey: `${this.supabaseKey}`
     };
-    return new xi({
+    return new $i({
       url: this.authUrl.href,
       headers: Object.assign(Object.assign({}, g), f),
       storageKey: o,
@@ -8510,7 +8510,7 @@ class Ui {
     (e === "TOKEN_REFRESHED" || e === "SIGNED_IN") && this.changedAccessToken !== r ? (this.changedAccessToken = r, this.realtime.setAuth(r)) : e === "SIGNED_OUT" && (this.realtime.setAuth(), t == "STORAGE" && this.auth.signOut(), this.changedAccessToken = void 0);
   }
 }
-const xe = (s, e, t) => new Ui(s, e, t);
+const $e = (s, e, t) => new Ui(s, e, t);
 function Ni() {
   if (typeof window < "u" || typeof process > "u")
     return !1;
@@ -8522,7 +8522,7 @@ function Ni() {
 }
 Ni() && console.warn("⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217");
 function Di(s, e) {
-  const t = U([]), r = U(!1), n = U(null), i = xe(
+  const t = U([]), r = U(!1), n = U(null), i = $e(
     "https://sb.y2k.fund",
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzU4NjUyMjAwLCJleHAiOjE5MTY0MTg2MDB9.xjB0XcyWjsnhjKx6u03CQwnvgXOQITzYUCtF8CoTcyE"
   );
@@ -8569,7 +8569,7 @@ function Di(s, e) {
   };
 }
 function Li(s, e) {
-  const t = U([]), r = U(!1), n = U(null), i = xe(
+  const t = U([]), r = U(!1), n = U(null), i = $e(
     "https://sb.y2k.fund",
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzU4NjUyMjAwLCJleHAiOjE5MTY0MTg2MDB9.xjB0XcyWjsnhjKx6u03CQwnvgXOQITzYUCtF8CoTcyE"
   );
@@ -8645,7 +8645,7 @@ const Bi = { class: "tab-navigation" }, qi = /* @__PURE__ */ Ie({
   return t;
 }, Mi = /* @__PURE__ */ me(qi, [["__scopeId", "data-v-eb9c5c6a"]]);
 function Fi() {
-  const s = U([]), e = U(!1), t = U(null), r = xe(
+  const s = U([]), e = U(!1), t = U(null), r = $e(
     "https://sb.y2k.fund",
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzU4NjUyMjAwLCJleHAiOjE5MTY0MTg2MDB9.xjB0XcyWjsnhjKx6u03CQwnvgXOQITzYUCtF8CoTcyE"
   );
@@ -8718,7 +8718,7 @@ function Fi() {
 }
 const he = /* @__PURE__ */ new Map();
 function Wi() {
-  const s = U(!1), e = U(null), t = xe(
+  const s = U(!1), e = U(null), t = $e(
     "https://sb.y2k.fund",
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzU4NjUyMjAwLCJleHAiOjE5MTY0MTg2MDB9.xjB0XcyWjsnhjKx6u03CQwnvgXOQITzYUCtF8CoTcyE"
   );
@@ -8889,7 +8889,7 @@ const Vi = { class: "comments-modal" }, Ki = { class: "comments-header" }, zi = 
                 It(Xe(m, ["ctrl"]), ["enter"])
               ]
             }, null, 40, Ji), [
-              [$t, d.value]
+              [xt, d.value]
             ]),
             w("button", {
               onClick: m,
@@ -8900,7 +8900,7 @@ const Vi = { class: "comments-modal" }, Ki = { class: "comments-header" }, zi = 
           B(i) && B(n).length === 0 ? (O(), R("div", Yi, [...A[6] || (A[6] = [
             w("div", { class: "spinner" }, null, -1),
             w("span", null, "Loading comments...", -1)
-          ])])) : B(o) ? (O(), R("div", Qi, x(B(o)), 1)) : B(n).length === 0 ? (O(), R("div", Xi, [...A[7] || (A[7] = [
+          ])])) : B(o) ? (O(), R("div", Qi, $(B(o)), 1)) : B(n).length === 0 ? (O(), R("div", Xi, [...A[7] || (A[7] = [
             w("p", null, "No comments yet. Be the first to comment!", -1)
           ])])) : (O(), R("div", Zi, [
             (O(!0), R(Ae, null, Re(B(n), (q) => (O(), R("div", {
@@ -8913,7 +8913,7 @@ const Vi = { class: "comments-modal" }, Ki = { class: "comments-header" }, zi = 
                   class: "comment-input",
                   rows: "3"
                 }, null, 512), [
-                  [$t, v.value]
+                  [xt, v.value]
                 ]),
                 w("div", to, [
                   w("button", {
@@ -8927,10 +8927,10 @@ const Vi = { class: "comments-modal" }, Ki = { class: "comments-header" }, zi = 
                 ])
               ])) : (O(), R("div", so, [
                 w("div", no, [
-                  w("span", io, x(_(q.user_id)), 1),
-                  w("span", oo, x(P(q.created_at)), 1)
+                  w("span", io, $(_(q.user_id)), 1),
+                  w("span", oo, $(P(q.created_at)), 1)
                 ]),
-                w("p", ao, x(q.comment), 1),
+                w("p", ao, $(q.comment), 1),
                 q.user_id === s.userId ? (O(), R("div", lo, [
                   w("button", {
                     onClick: (Ue) => y(q),
@@ -8948,9 +8948,9 @@ const Vi = { class: "comments-modal" }, Ki = { class: "comments-header" }, zi = 
       ])
     ])) : J("", !0);
   }
-}), fs = /* @__PURE__ */ me(ho, [["__scopeId", "data-v-f7c98976"]]);
+}), fs = /* @__PURE__ */ me(ho, [["__scopeId", "data-v-d811d20a"]]);
 function gs() {
-  const s = U({}), e = U(!1), t = xe(
+  const s = U({}), e = U(!1), t = $e(
     "https://sb.y2k.fund",
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzU4NjUyMjAwLCJleHAiOjE5MTY0MTg2MDB9.xjB0XcyWjsnhjKx6u03CQwnvgXOQITzYUCtF8CoTcyE"
   );
@@ -9005,7 +9005,8 @@ const fo = { class: "positions-container" }, go = { class: "filter-section" }, p
     activities: {},
     loading: { type: Boolean },
     error: {},
-    filterText: {}
+    filterText: {},
+    userId: {}
   },
   emits: ["update:filterText"],
   setup(s, { emit: e }) {
@@ -9112,7 +9113,7 @@ const fo = { class: "positions-container" }, go = { class: "filter-section" }, p
             ], -1)
           ])])) : J("", !0)
         ]),
-        s.loading ? J("", !0) : (O(), R("span", _o, x(n.value.length) + " of " + x(s.activities.length) + " activities ", 1))
+        s.loading ? J("", !0) : (O(), R("span", _o, $(n.value.length) + " of " + $(s.activities.length) + " activities ", 1))
       ]),
       s.loading ? (O(), R("div", yo, [...h[3] || (h[3] = [
         w("div", { class: "spinner" }, null, -1),
@@ -9145,10 +9146,10 @@ const fo = { class: "positions-container" }, go = { class: "filter-section" }, p
             y2: "16"
           })
         ], -1)),
-        ge(" " + x(s.error), 1)
+        ge(" " + $(s.error), 1)
       ])) : n.value.length === 0 ? (O(), R("div", mo, [
-        h[5] || (h[5] = bt('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-v-98638696><rect x="3" y="4" width="18" height="18" rx="2" ry="2" data-v-98638696></rect><line x1="16" y1="2" x2="16" y2="6" data-v-98638696></line><line x1="8" y1="2" x2="8" y2="6" data-v-98638696></line><line x1="3" y1="10" x2="21" y2="10" data-v-98638696></line></svg>', 1)),
-        w("p", null, x(s.filterText ? "No activities match your filter" : "No activities found"), 1)
+        h[5] || (h[5] = bt('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-v-396eb068><rect x="3" y="4" width="18" height="18" rx="2" ry="2" data-v-396eb068></rect><line x1="16" y1="2" x2="16" y2="6" data-v-396eb068></line><line x1="8" y1="2" x2="8" y2="6" data-v-396eb068></line><line x1="3" y1="10" x2="21" y2="10" data-v-396eb068></line></svg>', 1)),
+        w("p", null, $(s.filterText ? "No activities match your filter" : "No activities found"), 1)
       ])) : (O(), R("div", bo, [
         (O(!0), R(Ae, null, Re(n.value, (_) => (O(), R("div", {
           key: _.id,
@@ -9165,9 +9166,9 @@ const fo = { class: "positions-container" }, go = { class: "filter-section" }, p
                     "tag-strike": y === 2,
                     "tag-right": y === 3
                   }])
-                }, x(m), 3))), 128))
+                }, $(m), 3))), 128))
               ]),
-              w("p", To, x(_.human_readable_description_of_changes), 1)
+              w("p", To, $(_.human_readable_description_of_changes), 1)
             ]),
             w("div", Oo, [
               w("span", Ao, [
@@ -9187,7 +9188,7 @@ const fo = { class: "positions-container" }, go = { class: "filter-section" }, p
                   }),
                   w("polyline", { points: "12 6 12 12 16 14" })
                 ], -1)),
-                ge(" " + x(d(_.created_at)), 1)
+                ge(" " + $(d(_.created_at)), 1)
               ]),
               w("span", Ro, [
                 h[7] || (h[7] = w("svg", {
@@ -9206,7 +9207,7 @@ const fo = { class: "positions-container" }, go = { class: "filter-section" }, p
                     r: "4"
                   })
                 ], -1)),
-                ge(" ID: " + x(_.legal_entity || _.internal_account_id), 1)
+                ge(" ID: " + $(_.legal_entity || _.internal_account_id), 1)
               ]),
               w("button", {
                 onClick: (m) => l(_.id),
@@ -9223,7 +9224,7 @@ const fo = { class: "positions-container" }, go = { class: "filter-section" }, p
                 }, [
                   w("path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" })
                 ], -1)),
-                B(o)(_.id) > 0 ? (O(), R("span", jo, x(B(o)(_.id)), 1)) : J("", !0)
+                B(o)(_.id) > 0 ? (O(), R("span", jo, $(B(o)(_.id)), 1)) : J("", !0)
               ], 8, Co)
             ])
           ])
@@ -9233,19 +9234,19 @@ const fo = { class: "positions-container" }, go = { class: "filter-section" }, p
         key: 4,
         "activity-id": i.value,
         "activity-type": "position",
-        "user-id": p.$attrs.userId || "4fbec15d-2316-4805-b2a4-5cd2115a5ac8",
+        "user-id": t.userId,
         "is-open": !!i.value,
         onClose: c
       }, null, 8, ["activity-id", "user-id", "is-open"])) : J("", !0)
     ]));
   }
-}), Io = /* @__PURE__ */ me(Po, [["__scopeId", "data-v-98638696"]]), $o = {}, xo = { class: "coming-soon" };
+}), Io = /* @__PURE__ */ me(Po, [["__scopeId", "data-v-396eb068"]]), xo = {}, $o = { class: "coming-soon" };
 function Uo(s, e) {
-  return O(), R("div", xo, [...e[0] || (e[0] = [
+  return O(), R("div", $o, [...e[0] || (e[0] = [
     bt('<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-v-7a88de98><path d="M9 5H2v7l6.29 6.29c.94.94 2.48.94 3.42 0l3.58-3.58c.94-.94.94-2.48 0-3.42L9 5z" data-v-7a88de98></path><path d="M6 9.01V9" data-v-7a88de98></path><path d="M16 8l-8 8" data-v-7a88de98></path><path d="M22 12l-8 8" data-v-7a88de98></path></svg><h2 data-v-7a88de98>Orders</h2><p data-v-7a88de98>Order history and management coming soon</p>', 3)
   ])]);
 }
-const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de98"]]), Do = { class: "positions-container" }, Lo = { class: "filter-section" }, Bo = { class: "filter-input-wrapper" }, qo = ["value"], Mo = {
+const No = /* @__PURE__ */ me(xo, [["render", Uo], ["__scopeId", "data-v-7a88de98"]]), Do = { class: "positions-container" }, Lo = { class: "filter-section" }, Bo = { class: "filter-input-wrapper" }, qo = ["value"], Mo = {
   key: 0,
   class: "result-count"
 }, Fo = {
@@ -9269,7 +9270,8 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
     trades: {},
     loading: { type: Boolean },
     error: {},
-    filterText: {}
+    filterText: {},
+    userId: {}
   },
   emits: ["update:filterText"],
   setup(s, { emit: e }) {
@@ -9377,7 +9379,7 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
             ], -1)
           ])])) : J("", !0)
         ]),
-        s.loading ? J("", !0) : (O(), R("span", Mo, x(c.value.length) + " of " + x(s.trades.length) + " trades ", 1))
+        s.loading ? J("", !0) : (O(), R("span", Mo, $(c.value.length) + " of " + $(s.trades.length) + " trades ", 1))
       ]),
       s.loading ? (O(), R("div", Fo, [...h[3] || (h[3] = [
         w("div", { class: "spinner" }, null, -1),
@@ -9410,10 +9412,10 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
             y2: "16"
           })
         ], -1)),
-        ge(" " + x(s.error), 1)
+        ge(" " + $(s.error), 1)
       ])) : c.value.length === 0 ? (O(), R("div", Vo, [
-        h[5] || (h[5] = bt('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-v-0f9879db><rect x="3" y="4" width="18" height="18" rx="2" ry="2" data-v-0f9879db></rect><line x1="16" y1="2" x2="16" y2="6" data-v-0f9879db></line><line x1="8" y1="2" x2="8" y2="6" data-v-0f9879db></line><line x1="3" y1="10" x2="21" y2="10" data-v-0f9879db></line></svg>', 1)),
-        w("p", null, x(s.filterText ? "No trades match your filter" : "No trades found"), 1)
+        h[5] || (h[5] = bt('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-v-841703af><rect x="3" y="4" width="18" height="18" rx="2" ry="2" data-v-841703af></rect><line x1="16" y1="2" x2="16" y2="6" data-v-841703af></line><line x1="8" y1="2" x2="8" y2="6" data-v-841703af></line><line x1="3" y1="10" x2="21" y2="10" data-v-841703af></line></svg>', 1)),
+        w("p", null, $(s.filterText ? "No trades match your filter" : "No trades found"), 1)
       ])) : (O(), R("div", Ko, [
         (O(!0), R(Ae, null, Re(c.value, (_) => (O(), R("div", {
           key: _.id,
@@ -9430,9 +9432,9 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
                     "tag-strike": y === 2,
                     "tag-right": y === 3
                   }])
-                }, x(m), 3))), 128))
+                }, $(m), 3))), 128))
               ]),
-              w("p", Go, x(_.human_readable_description_of_changes), 1)
+              w("p", Go, $(_.human_readable_description_of_changes), 1)
             ]),
             w("div", Yo, [
               w("span", Qo, [
@@ -9452,7 +9454,7 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
                   }),
                   w("polyline", { points: "12 6 12 12 16 14" })
                 ], -1)),
-                ge(" " + x(d(_.created_at)), 1)
+                ge(" " + $(d(_.created_at)), 1)
               ]),
               w("span", Xo, [
                 h[7] || (h[7] = w("svg", {
@@ -9471,7 +9473,7 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
                     r: "4"
                   })
                 ], -1)),
-                ge(" ID: " + x(_.legal_entity || _.internal_account_id), 1)
+                ge(" ID: " + $(_.legal_entity || _.internal_account_id), 1)
               ]),
               w("button", {
                 onClick: (m) => a(_.id),
@@ -9488,7 +9490,7 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
                 }, [
                   w("path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" })
                 ], -1)),
-                B(i)(_.id) > 0 ? (O(), R("span", ea, x(B(i)(_.id)), 1)) : J("", !0)
+                B(i)(_.id) > 0 ? (O(), R("span", ea, $(B(i)(_.id)), 1)) : J("", !0)
               ], 8, Zo)
             ])
           ])
@@ -9498,17 +9500,17 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
         key: 4,
         "activity-id": n.value,
         "activity-type": "trade",
-        "user-id": p.$attrs.userId || "4fbec15d-2316-4805-b2a4-5cd2115a5ac8",
+        "user-id": t.userId,
         "is-open": !!n.value,
         onClose: l
       }, null, 8, ["activity-id", "user-id", "is-open"])) : J("", !0)
     ]));
   }
-}), ra = /* @__PURE__ */ me(ta, [["__scopeId", "data-v-0f9879db"]]), sa = { class: "activity-log-container" }, na = /* @__PURE__ */ Ie({
+}), ra = /* @__PURE__ */ me(ta, [["__scopeId", "data-v-841703af"]]), sa = { class: "activity-log-container" }, na = /* @__PURE__ */ Ie({
   __name: "ActivityLog",
   props: {
     symbolRoot: { default: "" },
-    userId: { default: "4fbec15d-2316-4805-b2a4-5cd2115a5ac8" }
+    userId: { default: null }
   },
   setup(s) {
     const e = s, { activities: t, loading: r, error: n, fetchActivities: i } = Di(e.userId, e.symbolRoot), { trades: o, tradesLoading: a, tradesError: l, fetchTrades: c } = Li(e.userId, e.symbolRoot), u = U("");
@@ -9529,18 +9531,20 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
         loading: B(r),
         error: B(n),
         "filter-text": u.value,
+        "user-id": e.userId,
         "onUpdate:filterText": v[0] || (v[0] = (p) => u.value = p)
-      }, null, 8, ["activities", "loading", "error", "filter-text"])) : f.value === "orders" ? (O(), ke(No, { key: 1 })) : f.value === "trades" ? (O(), ke(ra, {
+      }, null, 8, ["activities", "loading", "error", "filter-text", "user-id"])) : f.value === "orders" ? (O(), ke(No, { key: 1 })) : f.value === "trades" ? (O(), ke(ra, {
         key: 2,
         trades: B(o),
         loading: B(a),
         error: B(l),
         "filter-text": u.value,
+        "user-id": e.userId,
         "onUpdate:filterText": v[1] || (v[1] = (p) => u.value = p)
-      }, null, 8, ["trades", "loading", "error", "filter-text"])) : J("", !0)
+      }, null, 8, ["trades", "loading", "error", "filter-text", "user-id"])) : J("", !0)
     ]));
   }
-}), ha = /* @__PURE__ */ me(na, [["__scopeId", "data-v-c109d127"]]);
+}), ha = /* @__PURE__ */ me(na, [["__scopeId", "data-v-b8971794"]]);
 export {
   ha as ActivityLog,
   ha as default
