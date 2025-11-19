@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
+import Comments from './Comments.vue'
+import { useCommentCount } from '../composables/useCommentCount'
 
 interface Activity {
   id: string
@@ -50,6 +52,25 @@ const filteredActivities = computed(() => {
     })
   })
 })
+
+const activeCommentActivityId = ref<string | null>(null)
+const { getCount, fetchCommentCounts } = useCommentCount()
+
+// Fetch comment counts when activities change
+watch(() => props.activities, (activities) => {
+  if (activities && activities.length > 0) {
+    const activityIds = activities.map(a => a.id)
+    fetchCommentCounts(activityIds, 'position')
+  }
+}, { immediate: true })
+
+function openComments(activityId: string) {
+  activeCommentActivityId.value = activityId
+}
+
+function closeComments() {
+  activeCommentActivityId.value = null
+}
 
 function formatExpiryFromYyMmDd(yymmdd: string): string {
   if (!yymmdd || yymmdd.length !== 6) return ''
@@ -190,10 +211,27 @@ function clearFilter() {
               </svg>
               ID: {{ activity.legal_entity || activity.internal_account_id }}
             </span>
+            <button @click="openComments(activity.id)" class="comment-icon-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              <span v-if="getCount(activity.id) > 0" class="comment-badge">
+                {{ getCount(activity.id) }}
+              </span>
+            </button>
           </div>
         </div>
       </div>
     </div>
+
+    <Comments
+      v-if="activeCommentActivityId"
+      :activity-id="activeCommentActivityId"
+      activity-type="position"
+      :user-id="$attrs.userId as string || '4fbec15d-2316-4805-b2a4-5cd2115a5ac8'"
+      :is-open="!!activeCommentActivityId"
+      @close="closeComments"
+    />
   </div>
 </template>
 
