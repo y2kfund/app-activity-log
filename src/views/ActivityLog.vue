@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, watch, ref, computed } from 'vue'
 import { useActivityLog } from '../composables/useActivityLog'
+import { useTradeLog } from '../composables/useTradeLog'
 import TabNavigation, { type TabType } from '../components/TabNavigation.vue'
 import Positions from '../components/Positions.vue'
 import Orders from '../components/Orders.vue'
@@ -17,6 +18,7 @@ const props = withDefaults(defineProps<ActivityLogProps>(), {
 })
 
 const { activities, loading, error, fetchActivities } = useActivityLog(props.userId, props.symbolRoot)
+const { trades, tradesLoading, tradesError, fetchTrades } = useTradeLog(props.userId, props.symbolRoot)
 
 // Filter state
 const filterText = ref('')
@@ -25,15 +27,19 @@ onMounted(() => {
   fetchActivities()
 })
 
-watch(() => [props.userId, props.symbolRoot], () => {
-  fetchActivities()
-})
-
 const activeTab = ref<TabType>('positions')
 
 function handleTabChange(tab: TabType) {
   activeTab.value = tab
 }
+
+watch(() => [props.userId, props.symbolRoot, activeTab.value], () => {
+  if (activeTab.value === 'positions') {
+    fetchActivities()
+  } else if (activeTab.value === 'trades') {
+    fetchTrades()
+  }
+})
 </script>
 
 <template>
@@ -51,7 +57,14 @@ function handleTabChange(tab: TabType) {
 
     <Orders v-else-if="activeTab === 'orders'" />
     
-    <Trades v-else-if="activeTab === 'trades'" />
+    <Trades 
+      v-else-if="activeTab === 'trades'" 
+      :trades="trades"
+      :loading="tradesLoading"
+      :error="tradesError"
+      :filter-text="filterText"
+      @update:filter-text="filterText = $event"
+    />
   </div>
 </template>
 
