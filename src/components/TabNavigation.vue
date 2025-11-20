@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-export type TabType = 'positions' | 'orders' | 'trades'
+export type TabType = 'orders' | 'trades' | 'positions'
 
 const emit = defineEmits<{
   'tab-change': [tab: TabType]
 }>()
 
-const activeTab = ref<TabType>('positions')
+const activeTab = ref<TabType>('orders')
 
 function selectTab(tab: TabType) {
   activeTab.value = tab
@@ -17,12 +17,6 @@ function selectTab(tab: TabType) {
 
 <template>
   <div class="tab-navigation">
-    <button
-      :class="['tab-button', { active: activeTab === 'positions' }]"
-      @click="selectTab('positions')"
-    >
-      Positions
-    </button>
     <button
       :class="['tab-button', { active: activeTab === 'orders' }]"
       @click="selectTab('orders')"
@@ -34,6 +28,13 @@ function selectTab(tab: TabType) {
       @click="selectTab('trades')"
     >
       Trades
+    </button>
+
+    <button
+      :class="['tab-button', { active: activeTab === 'positions' }]"
+      @click="selectTab('positions')"
+    >
+      Positions
     </button>
   </div>
 </template>

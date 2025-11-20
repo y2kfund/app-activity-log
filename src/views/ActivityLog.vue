@@ -27,7 +27,7 @@ onMounted(() => {
   fetchActivities()
 })
 
-const activeTab = ref<TabType>('positions')
+const activeTab = ref<TabType>('orders')
 
 function handleTabChange(tab: TabType) {
   activeTab.value = tab
@@ -38,6 +38,8 @@ watch(() => [props.userId, props.symbolRoot, activeTab.value], () => {
     fetchActivities()
   } else if (activeTab.value === 'trades') {
     fetchTrades()
+  } else if (activeTab.value === 'orders') {
+    // fetchOrders() --- IGNORE ---
   }
 })
 </script>
@@ -46,23 +48,23 @@ watch(() => [props.userId, props.symbolRoot, activeTab.value], () => {
   <div class="activity-log-container">
     <TabNavigation @tab-change="handleTabChange" />
     
-    <Positions 
-      v-if="activeTab === 'positions'"
-      :activities="activities"
-      :loading="loading"
-      :error="error"
-      :filter-text="filterText"
-      :user-id="props.userId"
-      @update:filter-text="filterText = $event"
-    />
-
-    <Orders v-else-if="activeTab === 'orders'" />
+    <Orders v-if="activeTab === 'orders'" />
     
     <Trades 
       v-else-if="activeTab === 'trades'" 
       :trades="trades"
       :loading="tradesLoading"
       :error="tradesError"
+      :filter-text="filterText"
+      :user-id="props.userId"
+      @update:filter-text="filterText = $event"
+    />
+
+    <Positions 
+      v-else-if="activeTab === 'positions'"
+      :activities="activities"
+      :loading="loading"
+      :error="error"
       :filter-text="filterText"
       :user-id="props.userId"
       @update:filter-text="filterText = $event"

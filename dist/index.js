@@ -8619,23 +8619,23 @@ const Bi = { class: "tab-navigation" }, qi = /* @__PURE__ */ Ie({
   __name: "TabNavigation",
   emits: ["tab-change"],
   setup(s, { emit: e }) {
-    const t = e, r = U("positions");
+    const t = e, r = U("orders");
     function n(i) {
       r.value = i, t("tab-change", i);
     }
     return (i, o) => (T(), R("div", Bi, [
       y("button", {
-        class: Ee(["tab-button", { active: r.value === "positions" }]),
-        onClick: o[0] || (o[0] = (a) => n("positions"))
-      }, " Positions ", 2),
-      y("button", {
         class: Ee(["tab-button", { active: r.value === "orders" }]),
-        onClick: o[1] || (o[1] = (a) => n("orders"))
+        onClick: o[0] || (o[0] = (a) => n("orders"))
       }, " Orders ", 2),
       y("button", {
         class: Ee(["tab-button", { active: r.value === "trades" }]),
-        onClick: o[2] || (o[2] = (a) => n("trades"))
-      }, " Trades ", 2)
+        onClick: o[1] || (o[1] = (a) => n("trades"))
+      }, " Trades ", 2),
+      y("button", {
+        class: Ee(["tab-button", { active: r.value === "positions" }]),
+        onClick: o[2] || (o[2] = (a) => n("positions"))
+      }, " Positions ", 2)
     ]));
   }
 }), me = (s, e) => {
@@ -8643,7 +8643,7 @@ const Bi = { class: "tab-navigation" }, qi = /* @__PURE__ */ Ie({
   for (const [r, n] of e)
     t[r] = n;
   return t;
-}, Mi = /* @__PURE__ */ me(qi, [["__scopeId", "data-v-eb9c5c6a"]]);
+}, Mi = /* @__PURE__ */ me(qi, [["__scopeId", "data-v-ea819f51"]]);
 function Fi() {
   const s = U([]), e = U(!1), t = U(null), r = xe(
     "https://sb.y2k.fund",
@@ -9453,34 +9453,34 @@ const No = /* @__PURE__ */ me($o, [["render", Uo], ["__scopeId", "data-v-7a88de9
     ar(() => {
       i();
     });
-    const g = U("positions");
+    const g = U("orders");
     function f(p) {
       g.value = p;
     }
     return Oe(() => [e.userId, e.symbolRoot, g.value], () => {
-      g.value === "positions" ? i() : g.value === "trades" && c();
+      g.value === "positions" ? i() : g.value === "trades" ? c() : g.value;
     }), (p, d) => (T(), R("div", sa, [
       ps(Mi, { onTabChange: f }),
-      g.value === "positions" ? (T(), ke(Io, {
-        key: 0,
-        activities: B(t),
-        loading: B(r),
-        error: B(n),
-        "filter-text": u.value,
-        "user-id": e.userId,
-        "onUpdate:filterText": d[0] || (d[0] = (h) => u.value = h)
-      }, null, 8, ["activities", "loading", "error", "filter-text", "user-id"])) : g.value === "orders" ? (T(), ke(No, { key: 1 })) : g.value === "trades" ? (T(), ke(ra, {
-        key: 2,
+      g.value === "orders" ? (T(), ke(No, { key: 0 })) : g.value === "trades" ? (T(), ke(ra, {
+        key: 1,
         trades: B(o),
         loading: B(a),
         error: B(l),
         "filter-text": u.value,
         "user-id": e.userId,
+        "onUpdate:filterText": d[0] || (d[0] = (h) => u.value = h)
+      }, null, 8, ["trades", "loading", "error", "filter-text", "user-id"])) : g.value === "positions" ? (T(), ke(Io, {
+        key: 2,
+        activities: B(t),
+        loading: B(r),
+        error: B(n),
+        "filter-text": u.value,
+        "user-id": e.userId,
         "onUpdate:filterText": d[1] || (d[1] = (h) => u.value = h)
-      }, null, 8, ["trades", "loading", "error", "filter-text", "user-id"])) : G("", !0)
+      }, null, 8, ["activities", "loading", "error", "filter-text", "user-id"])) : G("", !0)
     ]));
   }
-}), ha = /* @__PURE__ */ me(na, [["__scopeId", "data-v-b8971794"]]);
+}), ha = /* @__PURE__ */ me(na, [["__scopeId", "data-v-3dc2efdc"]]);
 export {
   ha as ActivityLog,
   ha as default
