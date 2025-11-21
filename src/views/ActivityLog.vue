@@ -2,6 +2,7 @@
 import { onMounted, watch, ref, computed } from 'vue'
 import { useActivityLog } from '../composables/useActivityLog'
 import { useTradeLog } from '../composables/useTradeLog'
+import { useOrderLog } from '../composables/useOrderLog'
 import TabNavigation, { type TabType } from '../components/TabNavigation.vue'
 import Positions from '../components/Positions.vue'
 import Orders from '../components/Orders.vue'
@@ -13,18 +14,19 @@ interface ActivityLogProps {
 }
 
 const props = withDefaults(defineProps<ActivityLogProps>(), {
-  userId: null,
+  userId: '',
   symbolRoot: ''
 })
 
 const { activities, loading, error, fetchActivities } = useActivityLog(props.userId, props.symbolRoot)
 const { trades, tradesLoading, tradesError, fetchTrades } = useTradeLog(props.userId, props.symbolRoot)
+const { orders, ordersLoading, ordersError, fetchOrders } = useOrderLog(props.userId, props.symbolRoot)
 
 // Filter state
 const filterText = ref('')
 
 onMounted(() => {
-  fetchActivities()
+  fetchOrders()
 })
 
 const activeTab = ref<TabType>('orders')
@@ -39,7 +41,7 @@ watch(() => [props.userId, props.symbolRoot, activeTab.value], () => {
   } else if (activeTab.value === 'trades') {
     fetchTrades()
   } else if (activeTab.value === 'orders') {
-    // fetchOrders() --- IGNORE ---
+    fetchOrders()
   }
 })
 </script>
@@ -48,7 +50,15 @@ watch(() => [props.userId, props.symbolRoot, activeTab.value], () => {
   <div class="activity-log-container">
     <TabNavigation @tab-change="handleTabChange" />
     
-    <Orders v-if="activeTab === 'orders'" />
+    <Orders 
+      v-if="activeTab === 'orders'" 
+      :orders="orders"
+      :loading="ordersLoading"
+      :error="ordersError"
+      :filter-text="filterText"
+      :user-id="props.userId"
+      @update:filter-text="filterText = $event"
+    />
     
     <Trades 
       v-else-if="activeTab === 'trades'" 
